@@ -1,0 +1,325 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Alumnos Ayudantes MatCom UH - P&aacute;gina de usuario</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="alumno ayudante, gestionar alumno" name="keywords">
+  <meta content="Sitio para gestionar los datos de los alumnos ayudantes de la Facultad de Matem&aacute;tica y Computaci&oacute;n de la universidad de La Habana, Cuba." name="description">
+
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
+
+  <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content=""> 
+  <meta name="twitter:image" content="">
+
+  <!-- Fav and touch icons -->
+  <link rel="shortcut icon" href="{% static 'img/icons/favicon.png'%}">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'img/icons/114x114.png'%}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'img/icons/72x72.png'%}">
+  <link rel="apple-touch-icon-precomposed" href="{% static 'img/icons/default.png'%}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/owl.carousel.min.css'%}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/owl.theme.min.css'%}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/owl.transitions.min.css'%}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+  <!-- Estilo personalizado -->
+  <!--<link href="css/aayudantes.css" rel="stylesheet" type="text/css" id="colour-scheme"> -->
+  <link href="{% static 'css/aayudantes.css'%}" rel="stylesheet" type="text/css" id="colour-scheme">
+
+</head>
+
+<body class="page-index has-hero">
+  <!--Change the background class to alter background image, options are: benches, boots, buildings, city, metro -->
+  <div id="background-wrapper" class="buildings" data-stellar-background-ratio="0.1">
+
+    <!-- ======== @Region: #navigation ======== -->
+    <div id="navigation" class="wrapper">
+      <!--Hidden Header Region-->
+      <div class="header-hidden collapse">
+        <div class="header-hidden-inner container">
+          <div class="row">
+            <div class="col-md-3">
+              <h3>El sistema</h3>
+              <p>Este es nuestro proyecto para la asignatura Base de Datos del 3er. a&ntilde;o de la Carrera Ciencia de la Computaci&oacute;n, de la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana.</p>
+              <a href="http://www.matcom.uh.cu" class="btn btn-more"><i class="fa fa-plus"></i> M&aacute;s sobre MatCom</a>
+            </div>
+            <div class="col-md-3">
+              <!--@todo: replace with company contact details-->
+              <h3>Qui&eacute;nes somos</h3>
+			  <ul>
+			  		<li>Laura Tamayo</li>
+					<li>Luis Enrique Dalmau</li>
+					<li>Luis Ernesto Ibarra</li>
+			  </ul>
+              <!--<address>
+                  <strong>CubaSells Inc</strong>
+                  <abbr title="Address"><i class="fa fa-pushpin"></i></abbr>
+                  Universidad de la Habana, Cuba
+                  <br>
+                  <abbr title="Phone"><i class="fa fa-phone"></i></abbr>
+                  53423760
+                  <br>
+                  <abbr title="Email"><i class="fa fa-envelope-alt"></i></abbr>
+                  cubasells@gmail.com
+                </address> -->
+            </div>
+            <div class="col-md-6">
+              <!--Colour & Background Switch for demo - @todo: remove in production-->
+              <h3>Para cambiar la visualidad del sitio</h3>
+              <div class="switcher">
+                <div class="cols">
+                  Fondos:
+                  <br>
+                  <a href="#benches" class="background benches active" title="Bancos">Bancos</a>
+				  <a href="#boots" class="background boots " title="Botas">Botas</a>
+				  <a href="#buildings" class="background buildings " title="Edificios">Edificios</a>
+                  <a href="#city" class="background city " title="Ciudad">Ciudad</a>
+				  <a href="#metro" class="background metro " title="Metro">Metro</a>
+                </div>
+                <div class="cols">
+                  Colores:
+                  <br>
+                  <a href="#orange" class="colour orange active" title="Naranja">Naranja</a>
+				  <a href="#green" class="colour green " title="Verde">Verde</a>
+				  <a href="#blue" class="colour blue " title="Azul">Azul</a>
+				  <a href="#lavender" class="colour lavender "title="Lavanda">Lavanda</a>
+                </div>
+              </div>
+              <p><small>La selecci&oacute;n de la visualidad es s&oacute;lo v&aacute;lida para la p&aacute;gina actual.</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Header & navbar-branding region-->
+      <div class="header">
+        <div class="header-inner container">
+          <div class="row">
+            <div class="col-md-8">
+              <!--navbar-branding/logo - hidden image tag & site name so things like Facebook to pick up, actual logo set via CSS for flexibility -->
+              <a class="navbar-brand" href="usuario.html" title="Usuario">
+                <h1 class="hidden">
+                    <img src="{% static 'img/logo.png'%}" alt="Sitio para la Gesti&oacute;n de los datos de los Alumnos Ayudantes en la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana">
+                    MatCom
+                  </h1>
+              </a>
+              <div class="navbar-slogan">
+                Sitio para la Gesti&oacute;n de los datos de los Alumnos Ayudantes en la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana
+              </div>
+            </div>
+            <!--header rightside-->
+            <div class="col-md-4">
+              <!--user menu-->
+              <ul class="list-inline user-menu pull-right">
+                <li class="user-button"><a class="btn btn-primary btn-hh-trigger" role="button" data-toggle="collapse" data-target=".header-hidden">Abrir</a></li>
+              </ul>
+              <ul class="list-inline user-menu pull-right">
+                <li class="user-register"><i class="fa fa-edit text-primary "></i> <a href="{% url 'editar' %}" class="text-uppercase">Editar perfil</a></li>
+                <li class="user-login"><i class="fa fa-sign-out text-primary"></i> <a href="{% url 'logout' %}" class="text-uppercase">Salir</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  {%block body%}
+      <div class="container">
+        <div class="navbar navbar-default">
+          <!--mobile collapse menu button-->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <!--social media icons-->
+          <div class="navbar-text social-media social-media-inline pull-right">
+            <!--@todo: replace with company social media details-->
+            <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+              data-target="#navbarTogglerDemo01" aria-expanded="false">
+              <span class="fa fa-search" aria-hidden="true"></span>
+            </button>
+          </div>
+          <!--everything within this div is collapsed on mobile-->
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" id="main-menu">
+              <li class="icon-link">
+                <a href="usuario.html"><i class="fa fa-home"></i></a>
+              </li>
+              {%block dropdown%}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nuestras opciones<b class="caret"></b></a>
+                <!-- Dropdown Menu -->
+                <ul class="dropdown-menu">
+                  <!--<li class="dropdown-header">Our Options</li> -->
+                  <li><a href="consulta.html" tabindex="-1" class="menu-item">Consultar base de datos</a></li>
+                  <li><a href="#tabla-cobro-por-etapa" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
+                  <!--<li class="dropdown-footer">Dropdown footer</li> -->
+                </ul>
+              </li>
+              {%endblock%}
+            </ul>
+          </div>
+          <!--/.navbar-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="hero" id="highlighted">
+      <div class="inner">
+        <!--Slideshow-->
+        <div id="highlighted-slider" class="container">
+          <div class="item-slider" data-toggle="owlcarousel" data-owlcarousel-settings='{"singleItem":true, "navigation":true, "transitionStyle":"fadeUp"}'>
+            <!--Slideshow content-->
+            <!--Slide 1-->
+            <div class="item">
+              <div class="row">
+                <div class="col-md-6 col-md-push-6 item-caption">
+                  <h2 class="h1 text-weight-light">Bienvenido 
+				  <!--AQUI SE PONE EL NOMBRE DEL USUARIO begin -->
+				  <span class="text-primary" id="nombre-del-perfil"> {{ user.username }}</span>
+				  <!--AQUI SE PONE EL NOMBRE DEL USUARIO end -->
+                  </h2>
+                  <!--<h4></h4> -->
+				  <p>Este es el sitio para la Gesti&oacute;n de los datos de los Alumnos Ayudantes <br>en la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana.</p>
+                </div>
+                <div class="col-md-6 col-md-pull-6 hidden-xs">
+                  <img src="{% static 'img/slides/slide1.png'%}" alt="Slide 1" class="center-block img-responsive">
+                </div>
+              </div>
+            </div>
+            <!--Slide 2-->
+            <!--<div class="item">
+              <div class="row">
+                <div class="col-md-6 text-right-md item-caption">
+                  <h2 class="h1 text-weight-light">
+                      <span class="text-primary">Pensamos </span> en usted
+                    </h2>
+                  <h4>
+                      Alta calidad
+                    </h4>
+                      <p>Compra y venta de productos. </p>
+                      <p>Facilidades para crear su propia tienda.</p>
+                      <p>Cree sus propios anuncios y ofertas.</p>
+                  <a href="https://bootstrapmade.com" class="btn btn-more btn-lg"><i class="fa fa-plus"></i> Learn More</a>
+                </div>
+                <div class="col-md-6 hidden-xs">
+                  <img src="img/slides/slide2.png" alt="Slide 2" class="center-block img-responsive">
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== @Region: #content ======== -->
+  <div id="content">
+    <!-- Tabla de Cobro por etapas -->
+	<div class="container">
+		<div class="block block-border-bottom">
+			<a name="tabla-cobro-por-etapa"></a>
+    		<h2 class="block-title">Tabla de Cobro por Etapas</h2>
+        <table class="table table-bordered" id="tablacobro">
+          <thead>
+            <tr>
+              <th>Etapa</th>
+              <th>Cobro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowcol-md-="2">1</td>
+              <td>10.00 M.N.</td>
+            </tr>
+            <tr class="fila-gris">
+              <td>2</td>
+              <td>15.00 M.N.</td>
+            </tr>
+			<tr>
+              <td>3</td>
+              <td>25.00 M.N.</td>
+            </tr>
+			<tr class="fila-gris">
+              <td>4</td>
+              <td>30.00 M.N.</td>
+            </tr>
+          </tbody>
+        </table>
+		</div>
+	</div>
+  </div>
+{%endblock%}
+  {% block other_table %}
+  {% endblock  %}
+  <!-- /content -->
+  <!-- Call out block -->
+  <div class="block block-pd-sm block-bg-primary">
+    <div class="container">
+      <div class="row">
+        <!--<h3 class="col-md-4">
+            Some of our Clients
+          </h3> -->
+		  <p>Copyright © Facultad de Matem&aacute;tica y Computaci&oacute;n, Universidad de La Habana, 2020</p>        
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== @Region: #footer ======== -->
+  <footer id="footer" class="block block-bg-grey-dark" data-block-bg-img="{% static 'img/bg_footer-map.png' %}" data-stellar-background-ratio="0.4">
+    <div class="container">
+      <div class="row subfooter">
+        <!--@todo: replace with company copyright details-->
+        <div class="col-md-7">
+          <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Flexor
+            -->
+            <span class="creditos">Dise&ntilde;ado por <a href="https://bootstrapmade.com/">bootstrapmade.com</a></span>
+          </div>
+        </div>
+      </div>
+      <a href="#top" class="scrolltop">Top</a>
+    </div>
+  </footer>
+
+  <!-- Required JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/stellar/stellar.min.js' %}"></script>
+  <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="{% static 'js/custom.js '%}"></script>
+
+  <!--Custom scripts demo background & colour switcher - OPTIONAL -->
+  <script src="{% static 'js/color-switcher.js' %}"></script>
+
+  <!--Contactform script -->
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+</body>
+
+</html>

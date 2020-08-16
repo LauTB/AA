@@ -1,0 +1,112 @@
+{% extends 'index.html' %}
+
+{% block body%}
+<a class="navbar-brand center-block" href="usuarioestudiante.html" title="Gesti&oacute;n de datos de Alumnos Ayudantes">
+  <h1 class="hidden">
+    <img src="img/logo.png" alt="Gesti&oacute;n de datos de Alumnos Ayudantes">
+      Gesti&oacute;n de datos de Alumnos Ayudantes
+  </h1>
+</a>
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Registro
+        </h3>
+      </div>
+
+      <div class="panel-body">
+        <form name="formulario-registro" accept-charset="UTF-8" role="form" method="post">
+          {% csrf_token %}
+          <fieldset>
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+					      <input id="id_username" name="username" type="text" maxlength="150" class="form-control" placeholder="Nombre de Usuario"> 
+                {% for error in form.username.errors %}
+                  <p style= "color: red"> {{ error }} </p>
+                {% endfor %}
+              </div>
+            </div>
+                  
+           <div class="form-group">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>	  
+                <input id="id_first_name" name="first_name" type="text" maxlength="30" class="form-control" placeholder="Nombre">
+                {% for error in form.first_name.errors %}
+                  <p style= "color: red"> {{ error }} </p>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+					      <input id="id_last_name" name="last_name" type="text" maxlength="150" class="form-control" placeholder="Apellidos">
+                {% for error in form.last_name.errors %}
+                  <p style= "color: red"> {{ error }} </p>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-fw fa-envelope"></i></span>
+					      <input type="email" class="form-control" name="email" id="id_email" maxlength="254" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" />
+					      {% for error in form.email.errors %}
+                  <p style= "color: red"> {{ error }} </p>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+					      <input type="password" class="form-control" name="password1" placeholder="Contrase&ntilde;a">
+					      {% for error in form.password1.errors %}
+                  <p style= "color: red"> {{ error }} </p>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+                <input type="password" class="form-control" name="password2" placeholder="Contrase&ntilde;a">
+                {% for error in form.password2.errors %}
+                  <p style= "color: red"> {{ error }} </p>
+                {% endfor %}
+              </div>
+            </div>
+				  
+				    <div class="form-group">
+				  	  <div class="input-group input-group-l">
+						    <fieldset id="tipo-de-usuario"><legend>Tipo de usuario</legend>
+						      <input type="radio" id="registro-tipo-alumno" name="user_type" value="1" checked="">
+						      <label for="registro-tipo-alumno">Alumno</label><br>
+						      <input type="radio" id="registro-tipo-profesor" name="user_type" value="2">
+						      <label for="registro-tipo-profesor">Profesor</label><br>
+						      <input type="radio" id="registro-tipo-administrativo" name="user_type" value="3">
+						      <label for="registro-tipo-administrativo">Administrativo</label><br>
+                </fieldset>
+					    </div>
+				    </div>	
+
+            <!-- AQUI SE RECOGE SI ACEPTA TERMINOS Y CONDICIONES begin -->
+				    <div class="checkbox">
+              <label>
+              <input name="remember" type="checkbox" value="Terms">
+               Acepto los <a href="terminosycondiciones.pdf">t&eacute;rminos y condiciones</a>.                      </label>
+            </div>
+				    <!-- AQUI SE RECOGE SI ACEPTA TERMINOS Y CONDICIONES end -->
+				   
+				    <!--AQUI SE DA REGISTRO Y falta ir A LA PAGINA DE USUARIO begin --> 
+            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Registrarme">
+				    <!--AQUI SE DA REGISTRO Y falta ir A LA PAGINA DE USUARIO begin -->
+          </fieldset>
+        </form>
+			<!
+{% endblock %}

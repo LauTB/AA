@@ -1,0 +1,163 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="utf-8">
+  <title>Alumnos Ayudantes MatCom UH</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="alumno ayudante, gestionar alumno" name="keywords">
+  <meta content="Sistema para gestionar los alumnos ayudantes de la Facultad de Matem&aacute;tica y Computaci&oacute;n de la universidad de La Habana, Cuba." name="description">
+  
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
+
+  <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <!-- Fav and touch icons -->
+  <link rel="shortcut icon" href="img/icons/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icons/114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icons/72x72.png">
+  <link rel="apple-touch-icon-precomposed" href="img/icons/default.png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/owl.theme.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/owl.transitions.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- Estilo personalizado -->
+  <!--<link href="css/aayudantes.css" rel="stylesheet" type="text/css" id="colour-scheme"> -->
+  <link href="{% static 'css/aayudantes.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+
+<!-- ======== @Region: body ======== -->
+
+{% comment %} <body class="fullscreen-centered page-login"> {% endcomment %}
+<body class="fullscreen-centered page-login">
+  <!--Change the background class to alter background image, options are: benches, boots, buildings, city, metro 
+ -->
+  <div id="background-wrapper" class="benches" data-stellar-background-ratio="0.8">
+
+    <!-- ======== @Region: #content ======== -->
+    <div id="content">
+      <div class="header">
+        <div class="header-inner">
+			{% block body %}
+          <!--navbar-branding/logo - hidden image tag & site name so things like Facebook to pick up, actual logo set via CSS for flexibility -->
+          <a class="navbar-brand center-block" href="usuarioestudiante.html" title="Gesti&oacute;n de datos de Alumnos Ayudantes">
+            <h1 class="hidden">
+                <!--<img src="static/img/logo.png" alt="Flexor Logo"> -->
+                Gesti&oacute;n de datos de Alumnos Ayudantes
+              </h1>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                  Login
+                </h3>
+            </div>
+            <div class="panel-body">
+			<!--AQUI EL form DONDE SE ENTRAN TODOS LOS DATOS begin-->
+              <form name="formulario-login" accept-charset="UTF-8" role="form" action="{% url 'login' %}" method="post">
+                {%csrf_token%}
+                <fieldset>
+                  <div class="form-group">
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+					  
+					  <!--AQUI SE ESCRIBE EL USUARIO begin -->
+                      <input id="id_username" name="username" type="text" class="form-control" placeholder="Usuario">
+					  <!--AQUI SE ESCRIBE EL USUARIO end -->
+					  
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+					  
+					  <!--AQUI SE ESCRIBE EL PASSWORD begin -->
+                      <input id="id_password" name="password" type="password" class="form-control" placeholder="Contrase&ntilde;a">
+					  <!--AQUI SE ESCRIBE EL PASSWORD end -->
+					  
+                    </div>
+                  </div>
+                  <div class="checkbox">
+				  
+				  	<!--AQUI SE MARCA SI QUIERE Q RCUERDEN SUS DATOS begin -->
+					<label>
+                        <input name="remember" type="checkbox" value="Remember Me">
+                        Recordar mis datos
+                    </label>
+					<!--AQUI SE MARCA SI QUIERE Q RCUERDEN SUS DATOS end -->
+					
+                  </div>
+                  
+				  
+				  <!--AQUI SE DA LOGIN Y falta ir A LA PAGINA DE USUARIO begin -->
+				  <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+              <!--  <a href="{%url 'user'%}" class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Login</a> -->
+				  <!--AQUI SE DA LOGIN Y falta ir A LA PAGINA DE USUARIO end -->
+				  
+                </fieldset>
+              </form>
+			<!--AQUI EL form DONDE SE ENTRAN TODOS LOS DATOS end-->
+			
+              <p class="m-b-0 m-t">&iquest;No est&aacute; registrado? <a href="register">Registrarse</a></p>
+              <div class="credits">
+            <!-- Creditos para los q hicieron la plantilla -->
+            <span class="creditos">Dise&ntilde;ado por <a href="https://bootstrapmade.com/">bootstrapmade</a></span>
+          </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+            {% endblock %}
+      <!-- /row -->
+    </div>
+  </div>
+  <!-- Required JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/stellar/stellar.min.js' %}"></script>
+  <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="{% static 'js/custom.js' %}"></script>
+
+  <!--Custom scripts demo background & colour switcher - OPTIONAL -->
+  <script src="{% static 'js/color-switcher.js' %}"></script>
+
+  <!--Contactform script -->
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+</body>
+
+</html>

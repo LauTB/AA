@@ -1,0 +1,59 @@
+{% extends 'user.html' %}
+{%block dropdown%}
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nuestras opciones<b class="caret"></b></a>
+         <!-- Dropdown Menu -->
+        <ul class="dropdown-menu">
+            <!--<li class="dropdown-header">Our Options</li> -->
+            <li><a href="consulta.html" tabindex="-1" class="menu-item">Consultar base de datos</a></li>
+            <li><a href="#tabla-cobro-por-etapa" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
+            <li><a href="#tabla-estudiantes" tabindex="-1" class="menu-item">Ver mis estudiantes tutoreados</a></li>
+            <li><a href="modificarestudiante.html" tabindex="-1" class="menu-item">Modificar datos de estudiante</a></li>
+            <!--<li class="dropdown-footer">Dropdown footer</li> -->
+        </ul>
+    </li>
+{%endblock%}
+
+{% block othertable %}
+    <div class="container">
+	    <div class="block block-border-bottom">
+		    <a name="tutoreados"></a>
+    		<h2 class="block-title">Mis estudiantes tutoreados</h2>
+       		<table class="table table-bordered">
+          	    <thead>
+            	    <tr>
+              		    <th>Estudiante</th>
+              			<th>Carrera que cursa</th>
+			  			<th>A&ntilde;o que cursa</th>
+			  			<th>Asignatura que imparte</th>
+			  			<th>Carrera en que imparte</th>
+			            <th>A&ntilde;o en que imparte</th>
+			            <th>Semestre en que imparte</th>
+			            <th>Plan de trabajo</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+		  	    <!--AQUI SE LLENAN LAS FILAS DE LA TABLA, UN <tr> POR CADA NUEVA FILA-->
+                {% if object_list %}
+                    {% for est in object_list %}
+                    <tr>
+                        <td>{{est.nombre}}</td>
+                        <td>{{est.carrera}}</td>
+                        <td>{{est.anno}}</td>
+                        <td>{{est.asignatura}}</td>
+                        <td>{{est.carrera}}</td>
+                        <td>{{est.anno_i}}</td>
+                        <td>{{est.semestre}}</td>
+                        <td>{{est.plan}}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <h1> No hay estudiantes registrados</h1>
+                {% endif %}
+        
+                </tbody>
+            </table>
+		</div>
+	</div>
+{% endblock  %}
