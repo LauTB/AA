@@ -1,0 +1,2 @@
+-ver como se arregla el tema de que te salga un scroll en el login
+-ponerlo todo en español

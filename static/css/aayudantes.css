@@ -1,0 +1,40 @@
+/* CSS Document */
+/* Estilos personalizados para el sitio de Gesti�n de los Alumnos ayudantes de la Facultad MatCom, de la Universidad de La Habana */
+
+.fullscreen-centered #content {
+  background: transparent;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  /*margin-top:5%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:5%;*/
+  /* transform: translate(-50%, -50%); */
+  /*width: 80%;
+  height:auto;*/
+}
+
+#tipo-de-usuario legend {
+	 margin-bottom:0;
+	 color:#555;
+	}
+	
+#tipo-de-usuario label {
+	font-family: "Roboto", sans-serif;
+	color:#555;
+	}
+	
+#tablacobro .fila-gris {
+	background-color: #CCCCCC;
+	}
+	
+#tablacobro{
+	width:50%;
+	max-width:50%;
+	}
+
+.creditos {
+	font-size:65%;
+	}

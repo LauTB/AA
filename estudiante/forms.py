@@ -14,3 +14,8 @@ class EstudianteForm(forms.ModelForm):
         fields = ('año', 'etapa')
 
 
+class EstudianteUpdateForm(forms.ModelForm):
+    
+    class Meta:
+        model = Estudiante
+        fields = ("",)

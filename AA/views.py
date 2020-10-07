@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView 
+from django.views.generic import ListView, CreateView, TemplateView 
 import django.contrib.auth as auth
 from django.contrib.auth.views import LoginView, LogoutView
 from AA.forms import RegisterForm, StudentRegistrationForm, TeacherRegistrationForm, AdministrativeRegistrationForm
@@ -15,11 +15,10 @@ from estudiante.models import User
 class Login(LoginView):
     template_name ='index.html'
 
-def login(request):
+def login(request): #se va
     return render(request, 'index.html')
 
-def register(request):
-    
+def register(request):#se va
     if request.method == 'POST':
         
         form = RegisterForm(request.POST)
@@ -36,15 +35,14 @@ def register(request):
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
 
-def redirect_user(user_type):
+def redirect_user(user_type): #se va
     if user_type == '1':
         return redirect ('estudiantes:estudiante')
     if user_type == '2':
         return redirect ('estudiantes:profesor')
-    return redirect ('user')
+    return redirect ('trab')
 
-def user(request):
-    return render(request, 'user_estudiante.html')
+
 
 def signup(request):
     if request.method =='POST':
@@ -52,7 +50,7 @@ def signup(request):
 
 class StudentRegistrationView(CreateView):
     form_class = StudentRegistrationForm
-    template_name = 'test_register.html'
+    template_name = 'register_estudiante.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'student'
@@ -61,7 +59,7 @@ class StudentRegistrationView(CreateView):
     def form_valid(self, form):
         user = form.save()
         auth.login(self.request, user)
-        return redirect('estudiante:user_estudiante')
+        return redirect('estudiantes:estudiante')
 
 class TeacherRegistrationView(CreateView):
     form_class = TeacherRegistrationForm
@@ -74,11 +72,11 @@ class TeacherRegistrationView(CreateView):
     def form_valid(self, form):
         user = form.save()
         auth.login(self.request, user)
-        return redirect('estudiante:user_profesor')
+        return redirect('estudiantes:user_profesor')
 
 class AdministrativeRegistrationView(CreateView):
     form_class = AdministrativeRegistrationForm
-    template_name = 'user_type_selection.html'
+    template_name = 'base_registration.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'administrative'
@@ -88,3 +86,6 @@ class AdministrativeRegistrationView(CreateView):
         user = form.save()
         auth.login(self.request, user)
         return redirect('user')
+
+class RegisterView(TemplateView):
+    template_name = 'register_selector.html'

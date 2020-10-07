@@ -17,18 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, PasswordResetView, logout_then_login
 from AA import views
-from AA.views import Login, StudentRegistrationView, TeacherRegistrationView, AdministrativeRegistrationView
+from AA.views import Login, RegisterView, StudentRegistrationView, TeacherRegistrationView, AdministrativeRegistrationView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Login.as_view(), name='login'),
-    path('test/', AdministrativeRegistrationView.as_view(), name='try'),
-    path('p_r/', views.register, name='password_reset'),
-    path('register/', views.register, name='register'),
+    path('registrar/', RegisterView.as_view(), name='register'),
     path('logout/', logout_then_login, name='logout'),
     path('estudiante/', include(('estudiante.urls', 'estudiantes'), namespace="estudiantes")),
     path('asignatura/', include('asignatura.urls')),
-    path('user/', views.user, name='user'),
-    path('editar/', views.register, name='editar'),
+    path('registrar_est/', StudentRegistrationView.as_view(), name='est'),
+    path('registrar_prof/', TeacherRegistrationView.as_view(), name='prof'),
+    path('registrar_trab/',  AdministrativeRegistrationView.as_view(), name='trab'),
 ]

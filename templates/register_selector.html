@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+
+{% block body%}
+    <h2>Crear una cuenta</h2>
+    <p class="lead">Seleccione el tipo de cuenta que desea crear</p>
+    <a href="{% url 'est' %}" class="btn btn-student btn-lg" role="button">Soy estudiante</a>
+    <a href="{% url 'prof' %}" class="btn btn-teacher btn-lg" role="button">Soy profesor</a>
+    <a href="{% url 'trab' %}" class="btn btn-teacher btn-lg" role="button">Soy trabajador</a>
+{% endblock %}

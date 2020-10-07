@@ -1,0 +1,11 @@
+{% extends 'user.html' %}
+
+{% block body %}
+<div class="panel-body">
+        <form name="formulario-editar" accept-charset="UTF-8" role="form" method="post">
+        {% csrf_token %}
+{{form.as_p}}
+
+<input class="btn btn-md btn-primary btn-block" type="submit" value="Confirmar">
+</div>
+{% endblock  %}

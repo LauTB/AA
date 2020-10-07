@@ -55,20 +55,26 @@ class ImparteListView(ListView):
     template_name = ".html"
 
 
-class StudentUpdateView(UpdateView):
-    model = User
+# class StudentUpdateView(UpdateView):
+#     model = User
+#     form_class = StudentRegistrationForm
+#     template_name = 'test_register'
+#     success_url = 'estudiantes:user_estudiante'
+
+# class TeacherUpdateView(UpdateView):
+#     model = User
+#     form_class = TeacherRegistrationForm
+#     template_name = 'test_register'
+#     success_url = 'estudiantes:user_profesor'
+
+# class AdministrativeUpdateView(UpdateView):
+#     model = User
+#     form_class = AdministrativeRegistrationForm
+#     template_name = 'test_register'
+#     success_url = 'user'
+
+class EstudianteUpdateView(UpdateView):
+    model = Estudiante
     form_class = StudentRegistrationForm
-    template_name = 'test_register'
-    success_url = 'estudiantes:user_estudiante'
-
-class TeacherUpdateView(UpdateView):
-    model = User
-    form_class = TeacherRegistrationForm
-    template_name = 'test_register'
-    success_url = 'estudiantes:user_profesor'
-
-class AdministrativeUpdateView(UpdateView):
-    model = User
-    form_class = AdministrativeRegistrationForm
-    template_name = 'test_register'
-    success_url = 'user'
+    template_name = "estudiante/estudiante_edit.html"
+    success_url = 'estudiante_edit'

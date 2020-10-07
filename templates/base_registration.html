@@ -75,14 +75,15 @@
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-                <input type="password" class="form-control" name="password2" placeholder="Contrase&ntilde;a">
+                <input type="password" class="form-control" name="password2" placeholder="Verifique su contrase&ntilde;a">
                 {% for error in form.password2.errors %}
                   <p style= "color: red"> {{ error }} </p>
                 {% endfor %}
               </div>
             </div>
 				  
-				    
+				    {% block extra_data %}
+            {% endblock %}
 
             <!-- AQUI SE RECOGE SI ACEPTA TERMINOS Y CONDICIONES begin -->
 				    <div class="checkbox">
