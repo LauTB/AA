@@ -1,2 +1,6 @@
 -ver como se arregla el tema de que te salga un scroll en el login
 -ponerlo todo en español
+-poner los LoginRequiredMixin y los UserPassesTestMixin en las vistas
+-añadir al modelo de plan de trabajo el campo del fichero
+-fix css para tablas
+-reports

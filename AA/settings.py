@@ -128,4 +128,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 from django.urls import reverse_lazy
 
 LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('user')
+LOGIN_REDIRECT_URL = 'estudiantes:trabajador'

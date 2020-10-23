@@ -1,0 +1,10 @@
+{% extends 'user.html' %}
+{% block body %}
+<div class="panel-body">
+<form method="post">{% csrf_token %}
+<h2> ¿Está seguro de que desea eliminar este plan de trabajo?
+    {{ form.as_p }}
+    <input type="submit" value="Eliminar">
+</form>
+</div>
+{% endblock  %}

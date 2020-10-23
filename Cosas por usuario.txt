@@ -1,0 +1,5 @@
+estudiante:
+
+
+profesor:
+- consultar bd: etapas, evaluacion, profesor tutor, año, compatibles,

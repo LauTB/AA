@@ -1,0 +1,9 @@
+{% extends 'user.html' %}
+{% block body %}
+<div class="panel-body">
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Salvar">
+</form>
+</div>
+{% endblock  %}

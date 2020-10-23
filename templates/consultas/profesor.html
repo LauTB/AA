@@ -1,0 +1,25 @@
+{% extends 'user.html' %}
+{% block body %}
+
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Buscar</button>
+  </form>
+  <table>
+  {% for obj in filter.qs %}
+  <tr>
+    <td>{{ obj.estudiante.user.first_name}}-  </td> 
+    <td>{{ obj.estudiante.user.last_name }}-</td>
+    <td>{{ obj.estudiante.etapa}}-</td>
+    <td>{{ obj.estudiante.anno}}-</td>
+    <td>{{ obj.estudiante.carrera}}-</td>
+    <td> {% for a in obj.estudiante.compatible.all %} {{a}}{% endfor %}-</td>
+    <td>{{ obj.tutor.user.first_name}}-  </td> 
+    <td>{{ obj.tutor.user.last_name }}-</td>
+    <td>{{ obj.evaluacion }}-</td>
+    <td>{{ obj.asignatura }}-</td>
+    </tr>
+  {% endfor %}
+  </table>
+
+{% endblock  %}

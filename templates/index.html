@@ -119,8 +119,9 @@
                   
 				  
 				  <!--AQUI SE DA LOGIN Y falta ir A LA PAGINA DE USUARIO begin -->
-				  <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
-              <!--  <a href="{%url 'user'%}" class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Login</a> -->
+          <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+          <input type="hidden" name="next" value="{{ next }}">
+             {% comment %} <a href="{%url 'estudiantes:estudiante'%}" class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Login</a>  {% endcomment %}
 				  <!--AQUI SE DA LOGIN Y falta ir A LA PAGINA DE USUARIO end -->
 				  
                 </fieldset>

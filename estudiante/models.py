@@ -5,12 +5,14 @@ from asignatura.models import Asignatura, Carrera, Pertenece
 def positive(x):
     return x > 0
 
+def valid_year(x):
+    return x>=1 and x<=5
+
 class Etapa(models.Model):    
     etapa = models.IntegerField("Etapa", unique=True)
     pago = models.FloatField("Pago", validators=(positive,))
     def __str__(self):
         return '{}'.format(self.etapa)
-
 
 class User(AbstractUser):
     is_student = models.BooleanField(default=False)
@@ -23,6 +25,7 @@ class Estudiante(models.Model):
     carrera = models.ForeignKey(Carrera, verbose_name="Carrera", on_delete=models.CASCADE )
     etapa =  models.ForeignKey(Etapa, verbose_name="Etapa", on_delete=models.CASCADE)
     compatible = models.ManyToManyField(Asignatura, verbose_name="Asignaturas Compatibles")
+    anno = models.IntegerField("Año", unique= False, validators= (valid_year,))
 
 class Profesor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)

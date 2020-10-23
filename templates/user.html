@@ -135,7 +135,7 @@
                 <li class="user-button"><a class="btn btn-primary btn-hh-trigger" role="button" data-toggle="collapse" data-target=".header-hidden">Abrir</a></li>
               </ul>
               <ul class="list-inline user-menu pull-right">
-                <li class="user-register"><i class="fa fa-edit text-primary "></i> <a href="{% url 'estudiantes:estudiante_edit' pk=user.pk %}" class="text-uppercase">Editar perfil</a></li>
+               {%block edit%} <li class="user-register"><i class="fa fa-edit text-primary "></i> <a href="{% url 'estudiantes:estudiante_edit' pk=user.pk %}" class="text-uppercase">Editar perfil</a></li>{%endblock%}
                 <li class="user-login"><i class="fa fa-sign-out text-primary"></i> <a href="{% url 'logout' %}" class="text-uppercase">Salir</a></li>
               </ul>
             </div>
