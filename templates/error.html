@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block body%}
+    <h2>Error</h2>
+    
+    {% if error %}
+        <h4>{{ error }}</h4>
+    {% endif %}
+        
+{% endblock %}

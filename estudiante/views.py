@@ -8,14 +8,19 @@ from django.contrib.auth.views import PasswordChangeView
 from estudiante.forms import *
 from estudiante.models import *
 from estudiante.filters import *
+from estudiante.decorators.permission import role_permission
+from estudiante.customs.auth_views import AuthListView, AuthDeleteView, AuthUpdateView
 # Create your views here.
 
+@role_permission('Estudiante',False)
 def user_estudiante(request):
     return render (request, 'estudiante/user_estudiante.html')
 
+@role_permission('Profesor',False)
 def user_profesor(request):
     return render (request, 'estudiante/user_profesor.html')
 
+@role_permission('Trabajador',False)
 def user_administrative(request):
     return render (request, 'estudiante/user_administrative.html')
 
@@ -33,7 +38,7 @@ class EstudianteUpdateView(UpdateView):
         context.update(kwargs)
         return context
     
-
+    @role_permission('Estudiante')
     def get(self, request, *args, **kwargs):
         student = kwargs.pop('estudiante','')
         user_object = request.user
@@ -44,7 +49,7 @@ class EstudianteUpdateView(UpdateView):
         context = self.get_context(form1=student_form,form2=user_form)
         return render(request,self.template_name,context=context)
 
-
+    @role_permission('Estudiante')
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id= request.user.id)
         student = Estudiante.objects.get(user_id= request.user.id)
@@ -72,16 +77,18 @@ class ProfesorUpdateView(UpdateView):
         context.update(kwargs)
         return context
 
+    @role_permission('Profesor')
     def get(self, request, *args, **kwargs):
         profesor = kwargs.pop('profesor','')
         user_object = request.user
         user = User.objects.filter(username= user_object).get()
-        user_form = UserUpdateForm()
+        user_form = UserUpdateForm(instance=user)
         profesor = Profesor.objects.get(user_id= request.user.id)
         profesor_form = ProfesorUpdateForm(instance=profesor)
         context = self.get_context(form1=profesor_form,form2=user_form)
         return render(request,self.template_name,context=context)
 
+    @role_permission('Profesor')
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id= request.user.id)
         profesor = Profesor.objects.get(user_id= request.user.id)
@@ -109,6 +116,7 @@ class AdministrativeUpdateView(UpdateView):
         context.update(kwargs)
         return context
 
+    @role_permission('Trabajador')
     def get(self, request, *args, **kwargs):
         user_object = request.user
         user = User.objects.filter(username= user_object).get()
@@ -116,6 +124,7 @@ class AdministrativeUpdateView(UpdateView):
         context = self.get_context(form1= user_form)
         return render(request,self.template_name,context=context)
 
+    @role_permission('Trabajador')
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id= request.user.id)
         user_form = UserUpdateForm(request.POST)        
@@ -134,7 +143,7 @@ class PasswordChangeView( PasswordChangeView):
 class PlanTrabajoListView(ListView):
     model = PlanTrabajo
     template_name = "plan_trabajo/profesor_plan_trabajo.html"
-        
+
     def get_queryset(self):
         return PlanTrabajo.objects.filter(tutor_id= self.kwargs['pk'])
 
@@ -150,6 +159,7 @@ class PlanTrabajoCreateView(CreateView):
         context.update(kwargs)
         return context
 
+    @role_permission("Profesor")
     def get(self, request, *args, **kwargs):
         user_object = request.user
         user = User.objects.filter(username= user_object).get()
@@ -157,6 +167,7 @@ class PlanTrabajoCreateView(CreateView):
         context = self.get_context(form1=plan,)
         return render(request,self.template_name,context=context)
 
+    @role_permission("Profesor")
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id= request.user.id)
         plan_form = PlanCreateForm(request.POST)
@@ -168,15 +179,19 @@ class PlanTrabajoCreateView(CreateView):
             context = self.get_context(form1=plan_form,)
             return render(request,self.template_name,context=context)
 
-class PlanTrabajoDeleteView(DeleteView):
+class PlanTrabajoDeleteView(AuthDeleteView):
     model = PlanTrabajo
     template_name = "plan_trabajo/profesor_delete_plan.html"
     success_url = 'estudiantes:profesor'
     
     def get_success_url(self):
         return reverse(self.success_url)
+    
+    def is_authorized(self, request,*args, **kwargs):
+        obj = self.model.objects.get(id = self.kwargs['pk'])
+        return request.user.id == obj.tutor_id
 
-class PlanTrabajoUpdateView(UpdateView):
+class PlanTrabajoUpdateView(AuthUpdateView):
     model = PlanTrabajo
     fields = ['estudiante', 'asignatura','curso','semestre','evaluacion']
     template_name = "plan_trabajo/profesor_edit_plan.html"
@@ -185,6 +200,9 @@ class PlanTrabajoUpdateView(UpdateView):
     def get_success_url(self):
         return reverse(self.success_url)
 
+    def is_authorized(self, request,*args, **kwargs):
+        obj = self.model.objects.get(id = self.kwargs['pk'])
+        return request.user.id == obj.tutor_id
 
 class EPlanTrabajoListView(ListView):
     model = PlanTrabajo
@@ -199,12 +217,35 @@ class AdministrativeQueryView(FilterView):
     fields = '__all__'
     template_name = "consultas/trabajador.html"
 
+    @role_permission('Trabajador')
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @role_permission('Trabajador')
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
 class EstudianteQueryView(FilterView):
     model = Estudiante
     template_name = "consultas/estudiante.html"
+    
+    @role_permission('Estudiante')
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @role_permission('Estudiante')
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
 class ProfesorQueryView(FilterView):
     model = PlanTrabajo
     template_name = "consultas/profesor.html"
 
+    @role_permission('Profesor')
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @role_permission('Profesor')
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
     
