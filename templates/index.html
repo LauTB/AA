@@ -53,19 +53,22 @@
 
 <!-- ======== @Region: body ======== -->
 
-{% comment %} <body class="fullscreen-centered page-login"> {% endcomment %}
-<body class="fullscreen-centered page-login">
+{% comment %} <body class="fullscreen-centered page-login"> 
+<body class="fullscreen-centered page-login">{% endcomment %}
+
+<body class="page-login">
   <!--Change the background class to alter background image, options are: benches, boots, buildings, city, metro 
  -->
-  <div id="background-wrapper" class="benches" data-stellar-background-ratio="0.8">
+ <div id="figurita">
+  <div id="background-wrapper1" data-stellar-background-ratio="0.8">
 
     <!-- ======== @Region: #content ======== -->
-    <div id="content">
+    <div id="content1">
       <div class="header">
         <div class="header-inner">
 			{% block body %}
           <!--navbar-branding/logo - hidden image tag & site name so things like Facebook to pick up, actual logo set via CSS for flexibility -->
-          <a class="navbar-brand center-block" href="usuarioestudiante.html" title="Gesti&oacute;n de datos de Alumnos Ayudantes">
+          <a class="navbar-brand center-block" title="Gesti&oacute;n de datos de Alumnos Ayudantes">
             <h1 class="hidden">
                 <!--<img src="static/img/logo.png" alt="Flexor Logo"> -->
                 Gesti&oacute;n de datos de Alumnos Ayudantes
@@ -130,9 +133,9 @@
 			
               <p class="m-b-0 m-t">&iquest;No est&aacute; registrado? <a href="registrar">Registrarse</a></p>
               <div class="credits">
-            <!-- Creditos para los q hicieron la plantilla -->
-            <span class="creditos">Dise&ntilde;ado por <a href="https://bootstrapmade.com/">bootstrapmade</a></span>
-          </div>
+                <!-- Creditos para los q hicieron la plantilla -->
+                <span class="creditos">Dise&ntilde;ado por <a href="https://bootstrapmade.com/">bootstrapmade</a></span>
+              </div>
             </div>
           </div> 
         </div>
@@ -141,6 +144,19 @@
       <!-- /row -->
     </div>
   </div>
+
+<div class="block block-pd-sm block-bg-primary">
+    <div class="container">
+      <div class="row">
+        <!--<h3 class="col-md-4">
+            Some of our Clients
+          </h3> -->
+		  <p>Copyright © Facultad de Matem&aacute;tica y Computaci&oacute;n, Universidad de La Habana, 2020</p>        
+      </div>
+    </div>
+  </div>
+
+  
   <!-- Required JavaScript Libraries -->
   <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
@@ -158,7 +174,7 @@
 
   <!--Contactform script -->
   <script src="{% static 'contactform/contactform.js' %}"></script>
-
+</div>
 </body>
 
 </html>
