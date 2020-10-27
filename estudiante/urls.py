@@ -5,6 +5,7 @@ from estudiante.views import (EstudianteUpdateView,ProfesorUpdateView, Administr
                             EPlanTrabajoListView,AdministrativeQueryView,EstudianteQueryView,
                             ProfesorQueryView, PlanTrabajoDeleteView, PlanTrabajoUpdateView,)
 from .filters import *
+from estudiante.decorators.permission import role_permission
 
 urlpatterns = [
     path('user_estudiante/', views.user_estudiante,name='estudiante'),
