@@ -3,14 +3,17 @@ from estudiante import views
 from estudiante.views import (EstudianteUpdateView,ProfesorUpdateView, AdministrativeUpdateView,
                             PasswordChangeView, PlanTrabajoListView,PlanTrabajoCreateView,
                             EPlanTrabajoListView,AdministrativeQueryView,EstudianteQueryView,
-                            ProfesorQueryView, PlanTrabajoDeleteView, PlanTrabajoUpdateView,)
+                            ProfesorQueryView, PlanTrabajoDeleteView, PlanTrabajoUpdateView,
+                            IndexView)
 from .filters import *
+from django.contrib.auth.decorators import login_required
 from estudiante.decorators.permission import role_permission
 
 urlpatterns = [
-    path('user_estudiante/', views.user_estudiante,name='estudiante'),
-    path('user_profesor/', views.user_profesor,name='profesor'),
-    path('user_trabajador/', views.user_administrative,name='trabajador'),
+    path('', login_required(IndexView.as_view()),name='index'),
+    # path('user_estudiante/', views.user_estudiante,name='estudiante'),
+    # path('user_profesor/', views.user_profesor,name='profesor'),
+    # path('user_trabajador/', views.user_administrative,name='trabajador'),
     path('editar_estudiante/<int:pk>', EstudianteUpdateView.as_view(), name= 'estudiante_edit'),
     path('editar_profesor/<int:pk>', ProfesorUpdateView.as_view(), name= 'profesor_edit'),
     path('editar_trabajador/<int:pk>', AdministrativeUpdateView.as_view(), name= 'trabajador_edit'),

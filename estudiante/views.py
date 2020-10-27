@@ -24,6 +24,8 @@ def user_profesor(request):
 def user_administrative(request):
     return render (request, 'estudiante/user_administrative.html')
 
+class IndexView(TemplateView):
+    template_name = "estudiante/index.html"
 
 
 class EstudianteUpdateView(UpdateView):

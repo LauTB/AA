@@ -22,10 +22,10 @@ from AA.views import Login, RegisterView, StudentRegistrationView, TeacherRegist
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Login.as_view(), name='login'),
+    path('login/', Login.as_view(), name='login'),
     path('registrar/', RegisterView.as_view(), name='register'),
     path('logout/', logout_then_login, name='logout'),
-    path('estudiante/', include(('estudiante.urls', 'estudiantes'), namespace="estudiantes")),
+    path('', include(('estudiante.urls', 'estudiantes'), namespace="estudiantes")),
     path('asignatura/', include('asignatura.urls')),
     path('registrar_est/', StudentRegistrationView.as_view(), name='est'),
     path('registrar_prof/', TeacherRegistrationView.as_view(), name='prof'),

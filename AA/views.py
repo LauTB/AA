@@ -14,29 +14,6 @@ from estudiante.models import User
 
 class Login(LoginView):
     template_name ='index.html'
-    redirect_field_name = 'estudiantes:estudiante'
-    next='estudiantes:estudiante'
-
-    def get_context(self,**kwargs):
-        context = {}
-        context.update(kwargs)
-        return context
-
-    def post(self, request, *args, **kwargs):
-        super().post(request,args,kwargs)
-        user = auth.authenticate(username= request.POST['username'], password= request.POST['password'])
-        if user is None:
-            return HttpResponseRedirect(reverse('login'))
-        if user.is_student:
-            return HttpResponseRedirect(reverse('estudiantes:estudiante'))
-        if user.is_teacher:
-            return HttpResponseRedirect(reverse('estudiantes:profesor'))
-        if user.is_administrative:
-            return HttpResponseRedirect(reverse('estudiantes:trabajador'))
-            
-        return HttpResponseRedirect(reverse('estudiantes:trabajador'))
-        
-
 
 class StudentRegistrationView(CreateView):
     form_class = StudentRegistrationForm
@@ -49,7 +26,7 @@ class StudentRegistrationView(CreateView):
     def form_valid(self, form):
         user = form.save()
         auth.login(self.request, user)
-        return redirect('estudiantes:estudiante')
+        return redirect('estudiantes:index')
 
 class TeacherRegistrationView(CreateView):
     form_class = TeacherRegistrationForm
@@ -62,7 +39,7 @@ class TeacherRegistrationView(CreateView):
     def form_valid(self, form):
         user = form.save()
         auth.login(self.request, user)
-        return redirect('estudiantes:profesor')
+        return redirect('estudiantes:index')
 
 class AdministrativeRegistrationView(CreateView):
     form_class = AdministrativeRegistrationForm
@@ -75,7 +52,7 @@ class AdministrativeRegistrationView(CreateView):
     def form_valid(self, form):
         user = form.save()
         auth.login(self.request, user)
-        return redirect('estudiantes:trabajador')
+        return redirect('estudiantes:index')
 
 class RegisterView(TemplateView):
     template_name = 'register_selector.html'
