@@ -1,7 +1,7 @@
 {% extends 'user.html' %}
 
 {% block body %}
-<input class="btn btn-lg btn-primary btn-block" type="submit" value="Nuevo estudiante"onclick="location.href='{% url 'estudiantes:plan_create' %}'">
+<input class="btn btn-lg btn-primary btn-block" type="submit" value="Nuevo plan"onclick="location.href='{% url 'estudiantes:plan_create' %}'">
 
 <table>
 <thead>
@@ -27,7 +27,7 @@
                     </tr>
                 {% endfor %}
 {% else %}
-    <h1> No hay estudiantes registrados</h1>
+    <h1> No hay planes registrados</h1>
 {%endif%}
 </table>
 {% endblock %}

@@ -32,7 +32,7 @@ class EstudianteUpdateView(UpdateView):
     model = User
     fields= ('username','first_name','last_name', 'email',)
     template_name = "estudiante/estudiante_edit.html"
-    success_url = 'estudiantes:estudiante'
+    success_url = 'estudiantes:index'
     next = 'estudiante/user_estudiante'
 
     def get_context(self,**kwargs):
@@ -71,7 +71,7 @@ class ProfesorUpdateView(UpdateView):
     model = User
     fields= ('username','first_name','last_name', 'email',)
     template_name = "estudiante/profesor_edit.html"
-    success_url = 'estudiantes:profesor'
+    success_url = 'estudiantes:index'
     next = 'estudiante/user_profesor'
 
     def get_context(self,**kwargs):
@@ -110,7 +110,7 @@ class AdministrativeUpdateView(UpdateView):
     model = User
     form = UserUpdateForm
     template_name = "estudiante/administrative_edit.html"
-    success_url = 'estudiantes:trabajador'
+    success_url = 'estudiantes:index'
     next = 'estudiante/user_profesor'
 
     def get_context(self,**kwargs):
@@ -154,7 +154,7 @@ class PlanTrabajoCreateView(CreateView):
     fields = '__all__'
     form = PlanCreateForm
     template_name = "plan_trabajo/profesor_add_plan.html"
-    success_url = 'estudiantes:profesor'
+    success_url = 'estudiantes:index'
 
     def get_context(self,**kwargs):
         context = {}
@@ -184,7 +184,7 @@ class PlanTrabajoCreateView(CreateView):
 class PlanTrabajoDeleteView(AuthDeleteView):
     model = PlanTrabajo
     template_name = "plan_trabajo/profesor_delete_plan.html"
-    success_url = 'estudiantes:profesor'
+    success_url = 'estudiantes:index'
     
     def get_success_url(self):
         return reverse(self.success_url)
@@ -197,7 +197,7 @@ class PlanTrabajoUpdateView(AuthUpdateView):
     model = PlanTrabajo
     fields = ['estudiante', 'asignatura','curso','semestre','evaluacion']
     template_name = "plan_trabajo/profesor_edit_plan.html"
-    success_url = 'estudiantes:profesor'
+    success_url = 'estudiantes:index'
 
     def get_success_url(self):
         return reverse(self.success_url)
@@ -241,7 +241,7 @@ class EstudianteQueryView(FilterView):
 
 class ProfesorQueryView(FilterView):
     model = PlanTrabajo
-    template_name = "consultas/profesor.html"
+    template_name = "consultas/plan_de_trabajo.html"
 
     @role_permission('Profesor')
     def get(self, request, *args, **kwargs):

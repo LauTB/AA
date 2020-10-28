@@ -1,0 +1,34 @@
+{% extends 'user.html' %}
+{% block body %}
+
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Buscar</button>
+  </form>
+  <table>
+    <thead>
+      <th>Nombre del tutor</th>
+      <th>Nombre del estudiante</th>
+      <th>Etapa</th>
+      <th>Año</th>
+      <th>Carrera</th>
+      <th>Evaluación</th>
+      <th>Asignatura</th>
+    </thead>
+
+    <tbody>
+      {% for obj in filter.qs %}
+      <tr>
+        <td>{{ obj.tutor.user.first_name}} {{ obj.tutor.user.last_name }}&nbsp;&nbsp; </td> 
+        <td>{{ obj.estudiante.user.first_name}} {{ obj.estudiante.user.last_name }}&nbsp;&nbsp;</td> 
+        <td>{{ obj.estudiante.etapa}}&nbsp;&nbsp;</td>
+        <td>{{ obj.estudiante.anno}}&nbsp;&nbsp;</td>
+        <td>{{ obj.estudiante.carrera}}&nbsp;&nbsp;</td>
+        <td>{{ obj.evaluacion }}&nbsp;&nbsp;</td>
+        <td>{{ obj.asignatura }}&nbsp;&nbsp;</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock  %}

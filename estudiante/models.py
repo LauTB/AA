@@ -27,6 +27,10 @@ class Estudiante(models.Model):
     compatible = models.ManyToManyField(Asignatura, verbose_name="Asignaturas Compatibles")
     anno = models.IntegerField("Año", unique= False, validators= (valid_year,))
 
+    def __str__(self):
+        return f'{self.user.first_name} {self.user.last_name}'
+    
+    
 class Profesor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     departamento = models.CharField("Departamento", max_length=400)

@@ -6,15 +6,23 @@
     <button type="submit">Buscar</button>
   </form>
   <table>
-  {% for est in filter.qs %}
-  <tr>
-    <td>{{ est.user.first_name}}-  </td> 
-    <td>{{ est.user.last_name }}-</td>
-    <td>{{ est.etapa}}-</td>
-    <td>{{ est.anno}}-</td>
-    <td>{{ est.carrera}}</td>
-    </tr>
-  {% endfor %}
+    <thead>
+      <th>Nombre</th>
+      <th>Etapa</th>
+      <th>Año</th>
+      <th>Carrera</th>
+    </thead>
+    <tbody>
+      {% for est in filter.qs %}
+      <tr>
+        <td>{{ est.user.first_name}}-  </td> 
+        <td>{{ est.user.last_name }}-</td>
+        <td>{{ est.etapa}}-</td>
+        <td>{{ est.anno}}-</td>
+        <td>{{ est.carrera}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
 
 {% endblock  %}
