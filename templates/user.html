@@ -135,7 +135,27 @@
                 <li class="user-button"><a class="btn btn-primary btn-hh-trigger" role="button" data-toggle="collapse" data-target=".header-hidden">Abrir</a></li>
               </ul>
               <ul class="list-inline user-menu pull-right">
-               {%block edit%} <li class="user-register"><i class="fa fa-edit text-primary "></i> <a href="{% url 'estudiantes:estudiante_edit' pk=user.pk %}" class="text-uppercase">Editar perfil</a></li>{%endblock%}
+                {%block edit%} 
+                {% if user.is_administrative %}
+                <li class="user-register">
+                    <i class="fa fa-edit text-primary "></i> 
+                    <a href="{% url 'estudiantes:trabajador_edit' pk=user.pk %}" class="text-uppercase">Editar trabajador</a>
+                </li>
+                {% endif %}
+                {% if user.is_student %}
+                <li class="user-register">
+                    <i class="fa fa-edit text-primary "></i> 
+                    <a href="{% url 'estudiantes:estudiante_edit' pk=user.pk %}" class="text-uppercase">Editar estudiante</a>
+                </li>
+                {% endif %}
+                {% if user.is_teacher %}
+                <li class="user-register">
+                    <i class="fa fa-edit text-primary "></i> 
+                    <a href="{% url 'estudiantes:profesor_edit' pk=user.pk %}" class="text-uppercase">Editar profesor</a>
+                </li>
+                {% endif %}
+                
+                {%endblock%}
                 <li class="user-login"><i class="fa fa-sign-out text-primary"></i> <a href="{% url 'logout' %}" class="text-uppercase">Salir</a></li>
               </ul>
             </div>

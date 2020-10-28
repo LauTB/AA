@@ -1,9 +1,11 @@
 {% extends 'user.html' %}
 {% block body %}
 <div class="panel-body">
-<form method="post">{% csrf_token %}
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
 <h2> ¿Está seguro de que desea eliminar este plan de trabajo?
-    {{ form.as_p }}
+    {% autoescape off %}
+    {{ form_literal }}
+    {% endautoescape %}
     <input type="submit" value="Eliminar">
 </form>
 </div>
