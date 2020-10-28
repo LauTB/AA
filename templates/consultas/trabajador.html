@@ -15,10 +15,10 @@
     <tbody>
       {% for est in filter.qs %}
       <tr>
-        <td>{{ est.user.first_name}}-  </td> 
-        <td>{{ est.user.last_name }}-</td>
-        <td>{{ est.etapa}}-</td>
-        <td>{{ est.anno}}-</td>
+        <td>{{ est.user.first_name}}&nbsp;&nbsp; </td> 
+        <td>{{ est.user.last_name }}&nbsp;&nbsp;</td>
+        <td>{{ est.etapa}}&nbsp;&nbsp;</td>
+        <td>{{ est.anno}}&nbsp;&nbsp;</td>
         <td>{{ est.carrera}}</td>
       </tr>
       {% endfor %}
