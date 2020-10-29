@@ -19,6 +19,14 @@ class User(AbstractUser):
     is_teacher = models.BooleanField(default=False)
     is_administrative = models.BooleanField(default=False)
 
+
+valid_year_choices = (
+    (1,1),
+    (2,2),
+    (3,3),
+    (4,4),
+    (5,5),
+)
 class Estudiante(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     inicio = models.DateField("Fecha de inicio de la ayudantía", auto_now=False, auto_now_add=False)
@@ -35,6 +43,13 @@ class Profesor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     departamento = models.CharField("Departamento", max_length=400)
 
+valid_evaluation_choices = (
+    (0,'No evaluado'),
+    (2,2),
+    (3,3),
+    (4,4),
+    (5,5),
+)
 class PlanTrabajo(models.Model):
     plan_file_path = 'static/planes/'
     evaluacion = models.IntegerField("Evaluación")

@@ -58,7 +58,7 @@ class PlanCreateForm(forms.ModelForm):
     carrera = forms.ModelChoiceField(queryset= Carrera.objects.all(), required= True)
     curso = forms.DateField(required= True)
     semestre = forms.IntegerField(min_value= 1, max_value= 2, required=True)
-    evaluacion = forms.IntegerField(min_value= 2, max_value= 5, required=True)
+    evaluacion = forms.IntegerField(min_value=0, max_value= 5, required=True) # 0 => No se ha evaluado
     class Meta():
         model = PlanTrabajo
         exclude = ('tutor',)
