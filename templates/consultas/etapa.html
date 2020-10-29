@@ -1,0 +1,26 @@
+{% extends 'user.html' %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Etapa</th>
+      <th>Cobro</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for etapa in object_list %}
+      <tr>
+          <td>{{etapa.etapa}}</td>
+          <td>{{etapa.pago}}.</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+<br>
+<br>
+
+{% endblock body %}
