@@ -2,6 +2,8 @@
 
 {% block body %}
 
+  
+<div class="container">
   <form method="get" style= "color:black" >
     {{ filter.form.as_p }}
     <button type="submit" style= "color:black" >Buscar</button>
@@ -30,5 +32,6 @@ table-striped patron de rayado
       {% endfor %}
     </tbody>
   </table>
+</div>
 
 {% endblock  %}

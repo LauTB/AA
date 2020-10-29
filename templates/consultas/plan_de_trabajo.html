@@ -1,6 +1,7 @@
 {% extends 'user.html' %}
 {% block body %}
 
+<div class="container">
   <form method="get"style= "color:black">
     {{ filter.form.as_p }}
     <button type="submit"style= "color:black">Buscar</button>
@@ -30,5 +31,6 @@
       {% endfor %}
     </tbody>
   </table>
+</div>
 
 {% endblock  %}
