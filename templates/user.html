@@ -149,19 +149,19 @@
                 {% if user.is_administrative %}
                 <li class="user-register">
                     <i class="fa fa-edit text-primary "></i> 
-                    <a href="{% url 'estudiantes:trabajador_edit' pk=user.pk %}" class="text-uppercase">Editar trabajador</a>
+                    <a href="{% url 'estudiantes:trabajador_edit' pk=user.pk %}">Trabajador {{ user.username }}</a>
                 </li>
                 {% endif %}
                 {% if user.is_student %}
                 <li class="user-register">
                     <i class="fa fa-edit text-primary "></i> 
-                    <a href="{% url 'estudiantes:estudiante_edit' pk=user.pk %}" class="text-uppercase">Editar estudiante</a>
+                    <a href="{% url 'estudiantes:estudiante_edit' pk=user.pk %}">Estudiante {{ user.username }}</a>
                 </li>
                 {% endif %}
                 {% if user.is_teacher %}
                 <li class="user-register">
                     <i class="fa fa-edit text-primary "></i> 
-                    <a href="{% url 'estudiantes:profesor_edit' pk=user.pk %}" class="text-uppercase">Editar profesor</a>
+                    <a href="{% url 'estudiantes:profesor_edit' pk=user.pk %}">Maestro {{ user.username }}</a>
                 </li>
                 {% endif %}
                 
@@ -218,6 +218,7 @@
 
   {% block body%}
 
+{% comment %}
   <div class="hero" id="highlighted">
     <div class="inner">
       <!--Slideshow-->
@@ -229,9 +230,7 @@
             <div class="row">
               <div class="col-md-6 col-md-push-6 item-caption">
                 <h2 class="h1 text-weight-light">Bienvenido 
-                  <!--AQUI SE PONE EL NOMBRE DEL USUARIO begin -->
                   <span class="text-primary" id="nombre-del-perfil"> {{ user.username }}</span>
-                  <!--AQUI SE PONE EL NOMBRE DEL USUARIO end -->
                 </h2>
                 <p>Este es el sitio para la Gesti&oacute;n de los datos de los Alumnos Ayudantes <br>en la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana.</p>
               </div>
@@ -264,6 +263,7 @@
       </div>
     </div>
   </div>
+{% endcomment %}
 
   <!-- ======== @Region: #content ======== -->
   <div id="content">
