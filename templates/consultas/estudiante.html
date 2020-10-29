@@ -1,11 +1,15 @@
 {% extends 'user.html' %}
 {% block body %}
 
-  <form method="get">
+  <form method="get" style= "color:grey" >
     {{ filter.form.as_p }}
-    <button type="submit">Buscar</button>
+    <button type="submit" style= "color:grey" >Buscar</button>
   </form>
-  <table>
+{% comment %} 
+table-dark invierte los colores de la tabla
+table-striped patron de rayado
+{% endcomment %}
+  <table class="table table-bordered" style= "color:white">
     <thead>
       <th>Nombre</th>      
       <th>Etapa</th>      
