@@ -1,34 +1,36 @@
 {% extends 'user.html' %}
 {% block body %}
-  <div class="container">
-    <form method="get">
-      {{ filter.form.as_p }}
-      <button type="submit">Buscar</button>
-    </form>
-    <table  class="table table-bordered">
-      <thead>
-        <th>Nombre del tutor</th>
-        <th>Nombre del estudiante</th>
-        <th>Etapa</th>
-        <th>Año</th>
-        <th>Carrera</th>
-        <th>Evaluación</th>
-        <th>Asignatura</th>
-      </thead>
-  
-      <tbody>
-        {% for obj in filter.qs %}
-        <tr>
-          <td>{{ obj.tutor.user.first_name}} {{ obj.tutor.user.last_name }}&nbsp;&nbsp; </td> 
-          <td>{{ obj.estudiante.user.first_name}} {{ obj.estudiante.user.last_name }}&nbsp;&nbsp;</td> 
-          <td>{{ obj.estudiante.etapa}}&nbsp;&nbsp;</td>
-          <td>{{ obj.estudiante.anno}}&nbsp;&nbsp;</td>
-          <td>{{ obj.estudiante.carrera}}&nbsp;&nbsp;</td>
-          <td>{{ obj.evaluacion }}&nbsp;&nbsp;</td>
-          <td>{{ obj.asignatura }}&nbsp;&nbsp;</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+
+<div class="container">
+  <form method="get"style= "color:black">
+    {{ filter.form.as_p }}
+    <button type="submit"style= "color:black">Buscar</button>
+  </form>
+  <table class="table table-striped table-bordered"style= "color:black">
+    <thead>
+      <th>Nombre del tutor</th>
+      <th>Nombre del estudiante</th>
+      <th>Etapa</th>
+      <th>Año</th>
+      <th>Carrera</th>
+      <th>Evaluación</th>
+      <th>Asignatura</th>
+    </thead>
+
+    <tbody>
+      {% for obj in filter.qs %}
+      <tr>
+        <td>{{ obj.tutor.user.first_name}} {{ obj.tutor.user.last_name }}&nbsp;&nbsp; </td> 
+        <td>{{ obj.estudiante.user.first_name}} {{ obj.estudiante.user.last_name }}&nbsp;&nbsp;</td> 
+        <td>{{ obj.estudiante.etapa}}&nbsp;&nbsp;</td>
+        <td>{{ obj.estudiante.anno}}&nbsp;&nbsp;</td>
+        <td>{{ obj.estudiante.carrera}}&nbsp;&nbsp;</td>
+        <td>{{ obj.evaluacion }}&nbsp;&nbsp;</td>
+        <td>{{ obj.asignatura }}&nbsp;&nbsp;</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock  %}
