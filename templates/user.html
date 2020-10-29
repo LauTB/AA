@@ -89,7 +89,7 @@
             </div>
             <div class="col-md-6">
               <!--Colour & Background Switch for demo - @todo: remove in production-->
-              <h3>Para cambiar la visualidad del sitio</h3>
+              <h3>Para cambiar la visualizaci&oacute;n del sitio</h3>
               <div class="switcher">
                 <div class="cols">
                   Fondos:
@@ -109,7 +109,7 @@
                   <a href="#lavender" class="colour lavender "title="Lavanda">Lavanda</a>
                 </div>
               </div>
-              <p><small>La selecci&oacute;n de la visualidad es s&oacute;lo v&aacute;lida para la p&aacute;gina actual.</small></p>
+              <p><small>La selecci&oacute;n de la visualizaci&oacute;n es s&oacute;lo v&aacute;lida para la p&aacute;gina actual.</small></p>
             </div>
           </div>
         </div>
@@ -201,8 +201,8 @@
               <!-- Dropdown Menu -->
               <ul class="dropdown-menu">
                 <!--<li class="dropdown-header">Our Options</li> -->
-                <li><a href="consulta.html" tabindex="-1" class="menu-item">Consultar base de datos</a></li>
-                <li><a href="#tabla-cobro-por-etapa" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
+                <li><a href="{% url 'estudiantes:estudiante_consulta' %}" tabindex="-1" class="menu-item">Consultar base de datos</a></li>
+                <li><a href="{% url 'estudiantes:index' %}#tabla-cobro-por-etapa" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
                 <!--<li class="dropdown-footer">Dropdown footer</li> -->
               </ul>
             </li>

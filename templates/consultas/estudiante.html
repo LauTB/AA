@@ -1,15 +1,16 @@
-{% extends 'user.html' %}
+{% extends 'estudiante/index.html' %}
+
 {% block body %}
 
-  <form method="get" style= "color:grey" >
+  <form method="get" style= "color:black" >
     {{ filter.form.as_p }}
-    <button type="submit" style= "color:grey" >Buscar</button>
+    <button type="submit" style= "color:black" >Buscar</button>
   </form>
 {% comment %} 
 table-dark invierte los colores de la tabla
 table-striped patron de rayado
 {% endcomment %}
-  <table class="table table-bordered" style= "color:white">
+  <table class="table table-striped table-bordered" style= "color:black">
     <thead>
       <th>Nombre</th>      
       <th>Etapa</th>      

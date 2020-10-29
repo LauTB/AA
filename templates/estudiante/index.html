@@ -22,7 +22,7 @@
 			<li><a href="{%url 'estudiantes:plan_list' pk=user.pk%}" tabindex="-1" class="menu-item">Mis estudiantes tutoreados</a></li>
             {% endif %}
 
-        	<li><a href="#tabla-cobro-por-etapa" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
+        	<li><a href="{% url 'estudiantes:index' %}#tabla-cobro-por-etapa" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
             <!--<li class="dropdown-footer">Dropdown footer</li> -->
         </ul>
     </li>
