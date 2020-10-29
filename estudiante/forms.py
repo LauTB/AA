@@ -1,6 +1,7 @@
 from django import forms
 from estudiante.models import *
 from django.contrib.auth.forms import UsernameField
+import datetime
 
 class UserUpdateForm( forms.ModelForm):
     success_url = forms.CharField(widget=forms.HiddenInput(),required=False)
@@ -56,7 +57,9 @@ class ProfesorUpdateForm(forms.ModelForm):
 class PlanCreateForm(forms.ModelForm):
     success_url = forms.CharField(widget=forms.HiddenInput(),required=False)
     carrera = forms.ModelChoiceField(queryset= Carrera.objects.all(), required= True)
-    curso = forms.DateField(required= True)
+    year = datetime.date.today().year
+    curso = forms.DateField(required=True, widget=forms.SelectDateWidget(
+        years=range(year-5 , year + 4)))
     semestre = forms.IntegerField(min_value= 1, max_value= 2, required=True)
     evaluacion = forms.IntegerField(min_value=0, max_value= 5, required=True) # 0 => No se ha evaluado
     class Meta():
@@ -72,7 +75,7 @@ class PlanCreateForm(forms.ModelForm):
                                     semestre= self.cleaned_data.get('semestre'),
                                     curso= self.cleaned_data.get('curso'),
                                     asignatura= self.cleaned_data.get('asignatura'),
-                                    estudiante= estudiante )
+                                    estudiante= estudiante)
         
         Imparte.objects.create(estudiante= estudiante,
                              asignatura=self.cleaned_data.get('asignatura'),

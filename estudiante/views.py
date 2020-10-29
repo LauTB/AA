@@ -167,7 +167,7 @@ class PlanTrabajoListView(ListView):
     template_name = "plan_trabajo/profesor_plan_trabajo.html"
 
     def get_queryset(self):
-        return PlanTrabajo.objects.filter(tutor_id= self.kwargs['pk'])
+        return PlanTrabajo.objects.filter(tutor_id = self.kwargs['pk'])
 
 class PlanTrabajoCreateView(AuthCreateView):
     model = PlanTrabajo
@@ -300,7 +300,7 @@ class ProfesorQueryView(FilterView):
         return super().post(request, *args, **kwargs)
 
 
-class ProfesorQueryExcelView(FilterView):
+class ProfesorQueryExcelView(ExcelView):
     model = PlanTrabajo
     template_name = "consultas/plan_de_trabajo.html"
     

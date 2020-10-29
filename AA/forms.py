@@ -3,12 +3,15 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from estudiante.models import User, Estudiante, Profesor, Etapa
 from asignatura.models import Asignatura, Carrera
+import datetime
 
 class StudentRegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length= 30)
     last_name = forms.CharField(max_length= 150)
     email = forms.EmailField(max_length= 250, help_text= 'Se requiere una dirección de correo válida.')
-    inicio_de_ayudantia = forms.DateField() #error_messages= 'Se requiere una fecha válida.', required= False
+    year = datetime.date.today().year
+    inicio_de_ayudantia = forms.DateField(widget=forms.SelectDateWidget(
+        years=range(year-5, year + 4)))  # error_messages= 'Se requiere una fecha válida.', required= False
     asignaturas_compatibles = forms.ModelMultipleChoiceField(queryset=Asignatura.objects.all(), required=False)
     carrera = forms.ModelChoiceField(queryset= Carrera.objects.all(), required= False)
     etapa = forms.ModelChoiceField(queryset= Etapa.objects.all(), required= False)

@@ -27,7 +27,7 @@ class EstudianteFilter(df.FilterSet):
 
 class ProfesorFilter(df.FilterSet):
     anno = df.ChoiceFilter('estudiante__anno',lookup_expr='iexact',label='Año',choices=valid_year_choices)
-    anno = df.ChoiceFilter('evaluacion',lookup_expr='exact',label='Evaluación',choices=valid_evaluation_choices)
+    eval_anno = df.ChoiceFilter('evaluacion',lookup_expr='exact',label='Evaluación',choices=valid_evaluation_choices)
     class Meta:
         model = PlanTrabajo
         fields = {
