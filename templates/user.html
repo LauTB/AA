@@ -216,7 +216,7 @@
                     <li><a href="{% url 'estudiantes:profesor_consulta' %}" tabindex="-1" class="menu-item">Consultar base de datos</a></li>
                     <li><a href="{%url 'estudiantes:plan_list' pk=user.pk%}" tabindex="-1" class="menu-item">Mis estudiantes tutoreados</a></li>
                     {% endif %}
-                  <li><a href="{% url 'estudiantes:index' %}#tabla-cobro-por-etapa" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
+                  <li><a href="{% url 'estudiantes:etapa_list' %}" tabindex="-1" class="menu-item">Ver tabla de Cobro por etapas</a></li>
                     <!--<li class="dropdown-footer">Dropdown footer</li> -->
                 </ul>
             </li>
@@ -285,34 +285,7 @@
     <!-- Tabla de Cobro por etapas -->
     <div class="container">
       <div class="block block-border-bottom">
-        <a name="tabla-cobro-por-etapa"></a>
-          <h2 class="block-title">Tabla de Cobro por Etapas</h2>
-          <table class="table table-bordered" id="tablacobro">
-            <thead>
-              <tr>
-                <th>Etapa</th>
-                <th>Cobro</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td rowcol-md-="2">1</td>
-                <td>10.00 M.N.</td>
-              </tr>
-              <tr class="fila-gris">
-                <td>2</td>
-                <td>15.00 M.N.</td>
-              </tr>
-        <tr>
-                <td>3</td>
-                <td>25.00 M.N.</td>
-              </tr>
-        <tr class="fila-gris">
-                <td>4</td>
-                <td>30.00 M.N.</td>
-              </tr>
-            </tbody>
-          </table>
+        <h1>Bienvenido al Gestor de Alumnos Ayudantes</h1>
       </div>
     </div>
   </div>

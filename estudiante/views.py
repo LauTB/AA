@@ -27,6 +27,10 @@ def user_administrative(request):
 class IndexView(TemplateView):
     template_name = "estudiante/index.html"
 
+class EtapaListView(ListView):
+    model = Etapa
+    template_name = "consultas/etapa.html"
+
 
 class EstudianteUpdateView(AuthUpdateView):
     model = User
