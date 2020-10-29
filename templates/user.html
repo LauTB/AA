@@ -70,11 +70,11 @@
               <div class="col-md-3">
                 <!--@todo: replace with company contact details-->
                 <h3>Qui&eacute;nes somos</h3>
-          <ul>
-              <li>Laura Tamayo</li>
-            <li>Luis Enrique Dalmau</li>
-            <li>Luis Ernesto Ibarra</li>
-          </ul>
+                <ul>
+                  <li>Laura Tamayo</li>
+                  <li>Luis Enrique Dalmau</li>
+                  <li>Luis Ernesto Ibarra</li>
+                </ul>
                 <!--<address>
                     <strong>CubaSells Inc</strong>
                     <abbr title="Address"><i class="fa fa-pushpin"></i></abbr>
@@ -95,18 +95,18 @@
                     Fondos:
                     <br>
                     <a href="#benches" class="background benches active" title="Bancos">Bancos</a>
-            <a href="#boots" class="background boots " title="Botas">Botas</a>
-            <a href="#buildings" class="background buildings " title="Edificios">Edificios</a>
-                    <a href="#city" class="background city " title="Ciudad">Ciudad</a>
-            <a href="#metro" class="background metro " title="Metro">Metro</a>
+                    <a href="#boots" class="background boots " title="Botas">Botas</a>
+                    <a href="#buildings" class="background buildings " title="Edificios">Edificios</a>
+                            <a href="#city" class="background city " title="Ciudad">Ciudad</a>
+                    <a href="#metro" class="background metro " title="Metro">Metro</a>
                   </div>
                   <div class="cols">
                     Colores:
                     <br>
                     <a href="#orange" class="colour orange active" title="Naranja">Naranja</a>
-            <a href="#green" class="colour green " title="Verde">Verde</a>
-            <a href="#blue" class="colour blue " title="Azul">Azul</a>
-            <a href="#lavender" class="colour lavender "title="Lavanda">Lavanda</a>
+                    <a href="#green" class="colour green " title="Verde">Verde</a>
+                    <a href="#blue" class="colour blue " title="Azul">Azul</a>
+                    <a href="#lavender" class="colour lavender "title="Lavanda">Lavanda</a>
                   </div>
                 </div>
                 <p><small>La selecci&oacute;n de la visualidad es s&oacute;lo v&aacute;lida para la p&aacute;gina actual.</small></p>
@@ -120,16 +120,21 @@
             <div class="row">
               <div class="col-md-8">
                 <!--navbar-branding/logo - hidden image tag & site name so things like Facebook to pick up, actual logo set via CSS for flexibility -->
-                <a class="navbar-brand"  title="Universidad de La Habana">
-                  <h5>
-                    <img src="{% static 'img/logo.png'%}">
+                <div class="navbar-brand logo">
+                  <h5>    
+                    <img src="{% static 'img/slides/matcom-logo.png'%}" width="100" height="100">
                   </h5>
-                </a>
-                
-                <div class="navbar-slogan">
-                  Sitio para la Gesti&oacute;n de los datos de los Alumnos Ayudantes en la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana
-                  <br>
+                </div>   
+                <div class="navbar-brand item">
+                  <h5>
+                    <img src="{% static 'img/uh-logo.png'%}" width="100" height="100">
+                  </h5>
                 </div>
+                <div class="navbar-slogan">
+                 
+                  Sitio para la Gesti&oacute;n de los datos de los Alumnos Ayudantes en la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana
+                  
+                <br>
               </div>
               
               <!--header rightside-->
@@ -164,8 +169,8 @@
                 </ul>
               </div>
             </div>
-          </div>
         </div>
+      </div>
     <div>
       <br>  <br>
     </div>
@@ -205,6 +210,7 @@
         <!--/.navbar-collapse -->
       </div>
     </div>
+        </div>
     </div>
   </div>
 
@@ -230,7 +236,7 @@
                 <p>Este es el sitio para la Gesti&oacute;n de los datos de los Alumnos Ayudantes <br>en la Facultad de Matem&aacute;tica y Computaci&oacute;n de la Universidad de La Habana.</p>
               </div>
               <div class="col-md-6 col-md-pull-6 hidden-xs">
-                <img src="{% static 'img/slides/test1.png'%}" alt="Slide 1" class="center-block img-responsive">
+                <img src="{% static 'img/slides/matcom-logo.png'%}" alt="Slide 1" class="center-block img-responsive">
               </div>
             </div>
           </div>
