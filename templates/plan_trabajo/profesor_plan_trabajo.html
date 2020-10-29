@@ -3,31 +3,32 @@
 {% block body %}
 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Nuevo plan"onclick="location.href='{% url 'estudiantes:plan_create' %}'">
 
-<table>
-<thead>
-<tr>
-    <th> Estudiante </th>
-    <th> Asignatura</th>
-    <th> Carrera</th>
-    <th> Curso</th>
-    <th> Evaluación</th>
-</tr>
-</thead>
-
 {% if object_list %}
-                {% for plan in object_list %}
-                    <tr> 
-                        <td> {{ plan.estudiante.user.first_name}} &nbsp;{{ plan.estudiante.user.last_name}} &nbsp;&nbsp;</td>
-                        <td> {{ plan.asignatura}} &nbsp;&nbsp;</td>
-                        <td> {{ plan.carrera}} &nbsp;&nbsp;</td>
-                        <td> {{ plan.curso }} &nbsp;&nbsp;</td>
-                        <td> {{ plan.evaluacion }}&nbsp;&nbsp; </td>
-                        <td><a class="btn btn-primary"  href="{% url 'estudiantes:plan_editar' pk=plan.id %}">Editar</a>&nbsp;&nbsp;</td>
-                        <td><a class="btn btn-danger"  href="{% url 'estudiantes:plan_eliminar' pk=plan.id %}">Eliminar</a></td>    
-                    </tr>
-                {% endfor %}
+<table>
+    <thead>
+        <tr>
+            <th> Estudiante </th>
+            <th> Asignatura</th>
+            <th> Carrera</th>
+            <th> Curso</th>
+            <th> Evaluación</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for plan in object_list %}
+            <tr> 
+                <td> {{ plan.estudiante.user.first_name}} {{ plan.estudiante.user.last_name}} </td>
+                <td> {{ plan.asignatura}} </td>
+                <td> {{ plan.estudiante.carrera.nombre}} </td>
+                <td> {{ plan.curso }} </td>
+                <td> {{ plan.evaluacion }} </td>
+                <td><a class="btn btn-primary"  href="{% url 'estudiantes:plan_editar' pk=plan.id %}">Editar</a></td>
+                <td><a class="btn btn-danger"  href="{% url 'estudiantes:plan_eliminar' pk=plan.id %}">Eliminar</a></td>    
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% else %}
     <h1> No hay planes registrados</h1>
 {%endif%}
-</table>
 {% endblock %}

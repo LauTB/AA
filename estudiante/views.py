@@ -9,7 +9,7 @@ from estudiante.forms import *
 from estudiante.models import *
 from estudiante.filters import *
 from estudiante.decorators.permission import role_permission
-from estudiante.customs.auth_views import AuthListView, AuthDeleteView, AuthUpdateView
+from estudiante.customs.auth_views import AuthListView, AuthDeleteView, AuthUpdateView, AuthCreateView, is_authorized_decorator, go_back_set_success_url_decorator
 # Create your views here.
 
 @role_permission('Estudiante',False)
@@ -28,58 +28,66 @@ class IndexView(TemplateView):
     template_name = "estudiante/index.html"
 
 
-class EstudianteUpdateView(UpdateView):
+class EstudianteUpdateView(AuthUpdateView):
     model = User
-    fields= ('username','first_name','last_name', 'email',)
+    form_class = UserUpdateForm
     template_name = "estudiante/estudiante_edit.html"
     success_url = 'estudiantes:index'
+    object=None
     next = 'estudiante/user_estudiante'
 
-    def get_context(self,**kwargs):
-        context = {}
-        context.update(kwargs)
-        return context
+    def get_success_url(self):
+        try:
+            return reverse(self.success_url)
+        except:
+            return self.success_url
     
     @role_permission('Estudiante')
+    @is_authorized_decorator
     def get(self, request, *args, **kwargs):
         student = kwargs.pop('estudiante','')
         user_object = request.user
-        user = User.objects.filter(username= user_object).get()
-        user_form = UserUpdateForm()
+        user = User.objects.filter(id = user_object.id).get()
+        user_form = UserUpdateForm(instance=user)
         student = Estudiante.objects.get(user_id= request.user.id)
         student_form = EstudianteUpdateForm(instance=student)
-        context = self.get_context(form1=student_form,form2=user_form)
+        context = self.get_context_data(form=user_form, form1=student_form)
         return render(request,self.template_name,context=context)
 
     @role_permission('Estudiante')
+    @is_authorized_decorator
+    @go_back_set_success_url_decorator
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id= request.user.id)
         student = Estudiante.objects.get(user_id= request.user.id)
-        user_form = UserUpdateForm(request.POST)
-        student_form = EstudianteUpdateForm(request.POST)
+        user_form = UserUpdateForm(request.POST, instance=user)
+        student_form = EstudianteUpdateForm(request.POST, instance=student)
         student_form.instance.Estudiante = student
         
         if user_form.is_valid() and student_form.is_valid():
             user_form.save(user)
             student=student_form.save(user)
-            return  HttpResponseRedirect(reverse(self.success_url))
+            return HttpResponseRedirect(self.get_success_url())
         else:
-            context = self.get_context(form1=student_form,form2=user_form)
+            context = self.get_context_data(form=user_form, form1=student_form)
             return render(request,self.template_name,context=context)
 
-class ProfesorUpdateView(UpdateView):
+class ProfesorUpdateView(AuthUpdateView):
     model = User
-    fields= ('username','first_name','last_name', 'email',)
+    form_class = UserUpdateForm
     template_name = "estudiante/profesor_edit.html"
     success_url = 'estudiantes:index'
+    object = None
     next = 'estudiante/user_profesor'
 
-    def get_context(self,**kwargs):
-        context = {}
-        context.update(kwargs)
-        return context
+    def get_success_url(self):
+        try:
+            return reverse(self.success_url)
+        except:
+            return self.success_url
 
     @role_permission('Profesor')
+    @is_authorized_decorator
     def get(self, request, *args, **kwargs):
         profesor = kwargs.pop('profesor','')
         user_object = request.user
@@ -87,56 +95,48 @@ class ProfesorUpdateView(UpdateView):
         user_form = UserUpdateForm(instance=user)
         profesor = Profesor.objects.get(user_id= request.user.id)
         profesor_form = ProfesorUpdateForm(instance=profesor)
-        context = self.get_context(form1=profesor_form,form2=user_form)
+        context = self.get_context_data(form=user_form,form1=profesor_form)
         return render(request,self.template_name,context=context)
 
     @role_permission('Profesor')
+    @is_authorized_decorator
+    @go_back_set_success_url_decorator
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id= request.user.id)
         profesor = Profesor.objects.get(user_id= request.user.id)
-        user_form = UserUpdateForm(request.POST)
-        profesor_form = ProfesorUpdateForm(request.POST)
+        user_form = UserUpdateForm(request.POST, instance=user)
+        profesor_form = ProfesorUpdateForm(request.POST, instance=profesor)
         profesor_form.instance.Profesor = profesor
         
         if user_form.is_valid() and profesor_form.is_valid():
-            user_form.save(user)
-            profesor= profesor_form.save(user)
-            return  HttpResponseRedirect(reverse(self.success_url))
+            user = user_form.save()
+            profesor = profesor_form.save()
+            return HttpResponseRedirect(self.get_success_url())
         else:
-            context = self.get_context(form1=profesor_form,form2=user_form)
+            context = self.get_context_data(form=user_form, form1=profesor_form)
             return render(request,self.template_name,context=context)
 
-class AdministrativeUpdateView(UpdateView):
+class AdministrativeUpdateView(AuthUpdateView):
     model = User
-    form = UserUpdateForm
+    form_class = UserUpdateForm
     template_name = "estudiante/administrative_edit.html"
     success_url = 'estudiantes:index'
     next = 'estudiante/user_profesor'
 
-    def get_context(self,**kwargs):
-        context = {}
-        context.update(kwargs)
-        return context
+    def get_success_url(self):
+        try:
+            return reverse(self.success_url)
+        except:
+            return self.success_url
 
     @role_permission('Trabajador')
     def get(self, request, *args, **kwargs):
-        user_object = request.user
-        user = User.objects.filter(username= user_object).get()
-        user_form = UserUpdateForm()
-        context = self.get_context(form1= user_form)
-        return render(request,self.template_name,context=context)
+        return super().get(request, *args, **kwargs)
 
     @role_permission('Trabajador')
     def post(self, request, *args, **kwargs):
-        user = User.objects.get(id= request.user.id)
-        user_form = UserUpdateForm(request.POST)        
-        if user_form.is_valid():
-            user_form.save(user)
-            return  HttpResponseRedirect(reverse(self.success_url))
-        else:
-            context = self.get_context(form1=user_form)
-            return render(request,self.template_name,context=context)
-
+        return super().post(request,*args,**kwargs)
+    
 class PasswordChangeView( PasswordChangeView):
     template_name = "estudiante/password_change.html"
     success_url = reverse_lazy('login')
@@ -149,36 +149,34 @@ class PlanTrabajoListView(ListView):
     def get_queryset(self):
         return PlanTrabajo.objects.filter(tutor_id= self.kwargs['pk'])
 
-class PlanTrabajoCreateView(CreateView):
+class PlanTrabajoCreateView(AuthCreateView):
     model = PlanTrabajo
-    fields = '__all__'
-    form = PlanCreateForm
+    form_class = PlanCreateForm
     template_name = "plan_trabajo/profesor_add_plan.html"
     success_url = 'estudiantes:index'
 
-    def get_context(self,**kwargs):
-        context = {}
-        context.update(kwargs)
-        return context
+    def get_success_url(self):
+        try: 
+            return reverse(self.success_url)
+        except:
+            return self.success_url   
 
     @role_permission("Profesor")
     def get(self, request, *args, **kwargs):
-        user_object = request.user
-        user = User.objects.filter(username= user_object).get()
-        plan = PlanCreateForm()
-        context = self.get_context(form1=plan,)
-        return render(request,self.template_name,context=context)
+        return super().get(request, *args, **kwargs)
 
     @role_permission("Profesor")
+    @is_authorized_decorator
+    @go_back_set_success_url_decorator
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id= request.user.id)
         plan_form = PlanCreateForm(request.POST)
 
         if plan_form.is_valid(): 
             plan_form.save(user)
-            return  HttpResponseRedirect(reverse(self.success_url))
+            return HttpResponseRedirect(self.get_success_url())
         else:
-            context = self.get_context(form1=plan_form,)
+            context = self.get_context(form=plan_form,)
             return render(request,self.template_name,context=context)
 
 class PlanTrabajoDeleteView(AuthDeleteView):
@@ -187,7 +185,10 @@ class PlanTrabajoDeleteView(AuthDeleteView):
     success_url = 'estudiantes:index'
     
     def get_success_url(self):
-        return reverse(self.success_url)
+        try: 
+            return reverse(self.success_url)
+        except:
+            return super().get_success_url()    
     
     def is_authorized(self, request,*args, **kwargs):
         obj = self.model.objects.get(id = self.kwargs['pk'])
@@ -195,13 +196,16 @@ class PlanTrabajoDeleteView(AuthDeleteView):
 
 class PlanTrabajoUpdateView(AuthUpdateView):
     model = PlanTrabajo
-    fields = ['estudiante', 'asignatura','curso','semestre','evaluacion']
+    form_class = PlanUpdateForm
     template_name = "plan_trabajo/profesor_edit_plan.html"
     success_url = 'estudiantes:index'
 
     def get_success_url(self):
-        return reverse(self.success_url)
-
+        try: 
+            return reverse(self.success_url)
+        except:
+            return super().get_success_url()
+        
     def is_authorized(self, request,*args, **kwargs):
         obj = self.model.objects.get(id = self.kwargs['pk'])
         return request.user.id == obj.tutor_id

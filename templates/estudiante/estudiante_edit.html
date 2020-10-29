@@ -8,10 +8,9 @@
 <div class="panel-body">
     <form name="formulario-registro" accept-charset="UTF-8" role="form" method="post">
         {% csrf_token %}
+        {{form.as_p}}
         {{form1.as_p}}
-        {{form2.as_p}}
         <input class="btn btn-md btn-primary btn-block" type="submit" value="Confirmar">
-        <input type="hidden" name="next" value="{{ next }}">
     </form>
 </div>
 {% endblock  %}

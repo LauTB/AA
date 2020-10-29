@@ -1,95 +1,18 @@
 {%extends 'base_registration.html'%}
-{% comment %}
 
-{%block extra_data%}
-<div class="form-group">
-  <label> Inicio de la ayudant&iacute;a</label>
-  <div class="input-group input-group-lg">
-    
-    <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-		  <input id="inicio_de_ayudantia" type="date" class="form-control" name="inicio_de_ayudantia" placeholder="Inicio de ayudantia">
-			  {% for error in form.inicio_de_ayudantia.errors %}
-          <p style= "color: red"> {{ error }} </p>
-        {% endfor %}
-  </div>
-</div>
-
-<div   class="form-group">
-  <div class="input-group input-group-lg">
-    <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-    <label class="required" for="id_carrera"> carrera </label>
-    <br>
-    <select id= "id_carrera" name= "carrera">  
-    
- 
-      {% for x, y in form.fields.carrera.choices %}
-        <option> {{y}}</option>
-      {% endfor %}
-    </select>
-    {% for error in form.carrera.errors %}
-      <p style= "color: red"> {{ error }} </p>
-    {% endfor %} 
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="input-group input-group-lg">
-    <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-      <label> etapa</label>
-      <br>
-      <select id= "id_etapa" name= "etapa">
-        {% for x,y in form.fields.etapa.choices %}
-          <option > {{y}}</option>
-        {% endfor %}   
-      </select> 
-      {% for error in form.etapa.errors %}
-      <p style= "color: red"> {{ error }} </p>
-    {% endfor %}
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="input-group input-group-lg">
-    <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-    <label> Asignaturas que te gustan</label>
-    <br>
-    <select id= "asignaturas_compatibles" name= "asignatura" multiple= "" >
-      {% for x, y in form.fields.asignaturas_compatibles.choices %}
-        <option> {{y}}</option>
-      {% endfor %}
-    </select> 
-    {% for error in form.asignaturas_compatibles.errors %}
-      <p style= "color: red"> {{ error }} </p>
-    {% endfor %}
-  </div>
-</div>
-{%endblock%}
-{% extends 'index.html' %}
- {% endcomment %}
-
- 
-
-
-{% block body %}
-  <h2> Sign Up </h2>
- <div class="panel-body">
-    <form name= "formulario_registro"  accept-charset="UTF-8" role="form" method="post">
-      {% csrf_token %} 
-      <fieldset>
-        {%for field in form%}
-          
-            <div class="input-group input-group-lg">
-              
-              <p style= "color:black; text-align:center">{{field.label_tag}}</p>
-              <p style= "color:black;text-align:center">{{field}}</p>
-          
-          </div>
-          {% for error in field.errors %}
-            <p style= "color: red"> {{error}}
-          {% endfor %}      
-        {%endfor%}
-<input class="btn btn-md btn-primary btn-block" type="submit" value="Sign up">
+{% block fields_block %}
+{% csrf_token %} 
+<fieldset>
+  {% for field in form %}
+    <div class="input-group input-group-lg">
+      
+      <p style= "color:black; text-align:center">{{field.label_tag}}</p>
+      <p style= "color:black;text-align:center">{{field}}</p>
+  
+    </div>
+    {% for error in field.errors %}
+      <p style= "color: red"> {{error}}
+    {% endfor %}      
+  {% endfor %}
 </fieldset>
-</form> 
-</div>
 {%endblock%}

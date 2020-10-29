@@ -27,24 +27,3 @@
         </ul>
     </li>
 {% endblock  %}
-{%block edit%} 
-{% if user.is_administrative %}
-<li class="user-register">
-    <i class="fa fa-edit text-primary "></i> 
-    <a href="{% url 'estudiantes:trabajador_edit' pk=user.pk %}" class="text-uppercase">Editar trabajador</a>
-</li>
-{% endif %}
-{% if user.is_student %}
-<li class="user-register">
-    <i class="fa fa-edit text-primary "></i> 
-    <a href="{% url 'estudiantes:estudiante_edit' pk=user.pk %}" class="text-uppercase">Editar estudiante</a>
-</li>
-{% endif %}
-{% if user.is_teacher %}
-<li class="user-register">
-    <i class="fa fa-edit text-primary "></i> 
-    <a href="{% url 'estudiantes:profesor_edit' pk=user.pk %}" class="text-uppercase">Editar profesor</a>
-</li>
-{% endif %}
-
-{%endblock%}

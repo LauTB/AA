@@ -3,6 +3,7 @@ from estudiante.models import *
 from django.contrib.auth.forms import UsernameField
 
 class UserUpdateForm( forms.ModelForm):
+    success_url = forms.CharField(widget=forms.HiddenInput(),required=False)
     username = UsernameField(required= False)
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)   
@@ -11,17 +12,8 @@ class UserUpdateForm( forms.ModelForm):
 
     class Meta():
         model = User
-        exclude = (
-            'last_login', 'is_superuser', 'user_permissions','is_staff','is_active',
-            'date_joined', 'is_student', 'is_teacher','is_administrative','groups', 'password')
+        fields = ['username','first_name','last_name','email',]
 
-    def save(self, user, commit=True):
-        user.username = self.cleaned_data.get('username')
-        user.last_name = self.cleaned_data.get('last_name')
-        user.first_name = self.cleaned_data.get('first_name')
-        user.email = self.cleaned_data.get('email')
-        user.save()
-        return user
 
 class EstudianteUpdateForm(forms.ModelForm):
     class Meta():
@@ -52,16 +44,17 @@ class ProfesorUpdateForm(forms.ModelForm):
         model = Profesor
         fields = ('departamento', )
         
-    def save(self, user,  commit=True):
-        super().save(commit=False)
-        prof= self.instance.Profesor
-        profesor = Profesor.objects.get(user_id= user.id)
-        profesor.carrera= self.cleaned_data.get('departamento')
-        if commit:
-            profesor.save()       
-        return profesor
+    # def save(self, user,  commit=True):
+    #     super().save(commit=False)
+    #     prof= self.instance.Profesor
+    #     profesor = Profesor.objects.get(user_id= user.id)
+    #     profesor.carrera= self.cleaned_data.get('departamento')
+    #     if commit:
+    #         profesor.save()       
+    #     return profesor
 
 class PlanCreateForm(forms.ModelForm):
+    success_url = forms.CharField(widget=forms.HiddenInput(),required=False)
     carrera = forms.ModelChoiceField(queryset= Carrera.objects.all(), required= True)
     curso = forms.DateField(required= True)
     semestre = forms.IntegerField(min_value= 1, max_value= 2, required=True)
@@ -85,4 +78,12 @@ class PlanCreateForm(forms.ModelForm):
                              asignatura=self.cleaned_data.get('asignatura'),
                              carrera= self.cleaned_data.get('carrera'))
         return plan
+
+
+class PlanUpdateForm(forms.ModelForm):
+    success_url = forms.CharField(widget=forms.HiddenInput(),required=False)
+    class Meta:
+        model = PlanTrabajo
+        fields = ['estudiante', 'asignatura','curso','semestre','evaluacion']
+
 
