@@ -3,16 +3,14 @@
 
   <div class="container">
     <div class="block block-border-bottom">
-			<a name="planes"></a>
     	<h2 class="block-title">Mis planes de trabajo</h2>
       <table class="table table-bordered">
         <thead>
           <tr>
             <th>Curso</th>
             <th>Semestre</th>
-			<th>Asignatura</th>
-			<th>Nota obtenida</th>
-			<th>Plan de trabajo</th>
+            <th>Asignatura</th>
+            <th>Nota obtenida</th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +21,6 @@
                 <td> {{ plan.semestre }} </td>
                 <td> {{ plan.asignatura }} </td>
                 <td> {{ plan.evaluacion }} </td>
-                <td> {{ plan.plan }} </td>
               </tr>
             {% endfor %}
           {% else %}

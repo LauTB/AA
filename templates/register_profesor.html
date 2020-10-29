@@ -1,25 +1,18 @@
 {%extends 'base_registration.html'%}
 
-{% block body %}
-  <h2> Sign Up </h2>
- <div class="panel-body">
-    <form name= "formulario_registro"  accept-charset="UTF-8" role="form" method="post">
-      {% csrf_token %} 
-      <fieldset>
-        {%for field in form%}
-          
-            <div class="input-group input-group-lg">
-              
-              <p style= "color:black; text-align:center">{{field.label_tag}}
-              <p style= "color:black;text-align:center">{{field}}</p></p>
-          
-          </div>
-          {% for error in field.errors %}
-            <p style= "color: red"> {{error}}
-          {% endfor %}      
-        {%endfor%}
-<input class="btn btn-md btn-primary btn-block" type="submit" value="Sign up">
+{% block fields_block %}
+{% csrf_token %} 
+<fieldset>
+  {% for field in form %}
+    <div class="input-group input-group-lg">
+      
+      <p style= "color:black; text-align:center">{{field.label_tag}}</p>
+      <p style= "color:black;text-align:center">{{field}}</p>
+  
+    </div>
+    {% for error in field.errors %}
+      <p style= "color: red"> {{error}}
+    {% endfor %}      
+  {% endfor %}
 </fieldset>
-</form> 
-</div>
 {%endblock%}

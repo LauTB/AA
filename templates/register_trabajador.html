@@ -1,0 +1,72 @@
+{%extends 'base_registration.html'%}
+
+{% block fields_block %}
+{% csrf_token %} 
+{% csrf_token %}
+<fieldset>
+    
+  <div class="form-group">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+      <input id="id_username" name="username" type="text" maxlength="150" class="form-control" placeholder="Nombre de Usuario"> 
+      {% for error in form.username.errors %}
+        <p style= "color: red"> {{ error }} </p>
+      {% endfor %}
+    </div>
+  </div>
+        
+ <div class="form-group">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>	  
+      <input id="id_first_name" name="first_name" type="text" maxlength="30" class="form-control" placeholder="Nombre">
+      {% for error in form.first_name.errors %}
+        <p style= "color: red"> {{ error }} </p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+      <input id="id_last_name" name="last_name" type="text" maxlength="150" class="form-control" placeholder="Apellidos">
+      {% for error in form.last_name.errors %}
+        <p style= "color: red"> {{ error }} </p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-fw fa-envelope"></i></span>
+      <input type="email" class="form-control" name="email" id="id_email" maxlength="254" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" />
+      {% for error in form.email.errors %}
+        <p style= "color: red"> {{ error }} </p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+      <input type="password" class="form-control" name="password1" placeholder="Contrase&ntilde;a">
+      {% for error in form.password1.errors %}
+        <p style= "color: red"> {{ error }} </p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+      <input type="password" class="form-control" name="password2" placeholder="Verifique su contrase&ntilde;a">
+      {% for error in form.password2.errors %}
+        <p style= "color: red"> {{ error }} </p>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% block extra_data %}
+  {% endblock %}
+
+</fieldset>
+{%endblock%}

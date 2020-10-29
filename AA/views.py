@@ -43,7 +43,7 @@ class TeacherRegistrationView(CreateView):
 
 class AdministrativeRegistrationView(CreateView):
     form_class = AdministrativeRegistrationForm
-    template_name = 'base_registration.html'
+    template_name = 'register_trabajador.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'administrative'
