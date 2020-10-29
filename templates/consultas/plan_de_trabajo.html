@@ -6,6 +6,7 @@
     {{ filter.form.as_p }}
     <button type="submit"style= "color:black">Buscar</button>
   </form>
+  <a href="{% url 'estudiantes:profesor_consulta_export' %}" class="col-md-12">Export Data</a>
   <table class="table table-striped table-bordered"style= "color:black">
     <thead>
       <th>Nombre del tutor</th>

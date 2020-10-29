@@ -7,7 +7,8 @@
   <form method="get" style= "color:black" >
     {{ filter.form.as_p }}
     <button type="submit" style= "color:black" >Buscar</button>
-  </form>
+    </form>
+  <a href="{% url 'estudiantes:estudiante_consulta_export' %}" class="col-md-12">Export Data</a>
 {% comment %} 
 table-dark invierte los colores de la tabla
 table-striped patron de rayado

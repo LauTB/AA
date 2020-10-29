@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from excel_response import ExcelResponse
 
 # Decorator template
 def param_decorator(param0,param1,param2): # Params Function
@@ -31,8 +32,19 @@ def role_permission(role:str, method_wrapper=True,error_template:str='error.html
             if role == 'Trabajador':
                 ok = request.user.is_administrative
             if ok:
+                # if "export" in request.POST:
+                #     return ExcelResponse(
+                #         self.object_list,
+                #         output_filename=f'{self.model.__name__}_data',
+                #         worksheet_name=f'{self.model.__name__}',
+                #         force_csv=False,
+                #         header_font=None,
+                #         data_font=None,
+                #         guess_types=True
+                #     )
                 return func(self, *args, **kwargs)
             else:
                 return render(request, error_template, {'error':f'Tienes que ser {role} para poder acceder a esta página'})
+            
         return inner_func
     return wrap_func

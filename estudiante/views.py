@@ -10,6 +10,10 @@ from estudiante.models import *
 from estudiante.filters import *
 from estudiante.decorators.permission import role_permission
 from estudiante.customs.auth_views import AuthListView, AuthDeleteView, AuthUpdateView, AuthCreateView, is_authorized_decorator, go_back_set_success_url_decorator
+
+
+from excel_response import ExcelView
+
 # Create your views here.
 
 @role_permission('Estudiante',False)
@@ -30,6 +34,18 @@ class IndexView(TemplateView):
 class EtapaListView(ListView):
     model = Etapa
     template_name = "consultas/etapa.html"
+
+class EtapaExcelView(ExcelView):
+    model = Etapa
+    template_name = "consultas/etapa.html"
+
+    output_filename=f'{model.__name__}_data'
+    worksheet_name=f'{model.__name__}'
+    force_csv=False
+    header_font=None
+    data_font=None
+    guess_types=True
+           
 
 
 class EstudianteUpdateView(AuthUpdateView):
@@ -222,6 +238,18 @@ class EPlanTrabajoListView(ListView):
         return PlanTrabajo.objects.filter(estudiante_id= self.kwargs['pk'])
 
 
+class EPlanTrabajoExcelView(ExcelView):
+    model = PlanTrabajo
+    template_name = "estudiante/estudiante_plan_list.html"
+
+    output_filename = f'{model.__name__}_data'
+    worksheet_name = f'{model.__name__}'
+    force_csv = False
+    header_font = None
+    data_font = None
+    guess_types = True
+
+
 class AdministrativeQueryView(FilterView):
     model = Estudiante
     fields = '__all__'
@@ -247,6 +275,18 @@ class EstudianteQueryView(FilterView):
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
 
+
+class EstudianteQueryExcelView(ExcelView):
+    model = Estudiante
+    template_name = "consultas/estudiante.html"
+
+    output_filename = f'{model.__name__}_data'
+    worksheet_name = f'{model.__name__}'
+    force_csv = False
+    header_font = None
+    data_font = None
+    guess_types = True
+
 class ProfesorQueryView(FilterView):
     model = PlanTrabajo
     template_name = "consultas/plan_de_trabajo.html"
@@ -258,4 +298,15 @@ class ProfesorQueryView(FilterView):
     @role_permission('Profesor')
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
+
+
+class ProfesorQueryExcelView(FilterView):
+    model = PlanTrabajo
+    template_name = "consultas/plan_de_trabajo.html"
     
+    output_filename = f'{model.__name__}_data'
+    worksheet_name = f'{model.__name__}'
+    force_csv = False
+    header_font = None
+    data_font = None
+    guess_types = True
